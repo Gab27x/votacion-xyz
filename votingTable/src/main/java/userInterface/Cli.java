@@ -16,17 +16,20 @@ public class Cli {
     }
 
     public void startVotingProcess() {
-        System.out.println("Welcome to Cli voting system");
-        System.out.println("Enter [id , candidate id] ignore []"); // Mensaje con la instrucción de ignorar corchetes
+        while (true) {
+            
+            System.out.println("Welcome to Cli voting system");
+            System.out.println("Enter [id , candidate id] ignore []"); // Mensaje con la instrucción de ignorar corchetes
 
-        showCandidates();
-        
-        System.out.print("Your vote: ");
-        String voteInput = scanner.nextLine();
+            showCandidates();
+            
+            System.out.print("Your vote: ");
+            String voteInput = scanner.nextLine();
 
-        processAndSendVote(voteInput);
+            processAndSendVote(voteInput);
 
-        scanner.close(); // Se llama directamente a scanner.close() aquí
+        }
+        //scanner.close(); 
     }
     
     public void showCandidates() {

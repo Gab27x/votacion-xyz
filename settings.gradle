@@ -8,5 +8,5 @@
  */
 
 rootProject.name = 'votacion-xyz'
-include('voting-site')
-include('voting-table')
+include('votingSite')
+include('votingTable')
