@@ -63,7 +63,7 @@ public class Cli {
             }
         } else {
             System.err.println("Invalid vote format. Use: VoterID,CandidateID (e.g., UUID123,1)");
-    	}
+        }
 	}
 
 
