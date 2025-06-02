@@ -1,25 +1,32 @@
-import com.zeroc.Ice.Communicator;
-import com.zeroc.Ice.Util;
+import com.zeroc.Ice.*;
 
-public class VotingSite {
+public class VotingSite implements Demo.VotingSite {  // Implementa la interfaz generada
 
-	public static void main(String[] args) {
-		
-		try (Communicator communicator = Util.initialize(args, "VotingSite.cfg")) {
+    @Override
+    public void send(int candidateId, Current current) {
+        System.out.println("Recibido voto para candidato: " + candidateId);
+        // Aquí va tu lógica para procesar el voto
+    }
 
-			System.out.println("Voting Site is starting...");
+    public static void main(String[] args) {
+        try (Communicator communicator = Util.initialize(args, "VotingSite.cfg")) {
 
-			
+            System.out.println("Voting Site is starting...");
+
+            ObjectAdapter adapter = communicator.createObjectAdapter("VotingSite");
+
+			VotingSite servant = new VotingSite();
+			adapter.add(servant, Util.stringToIdentity("VotingSite"));
+
+			adapter.activate();
 
 
+            System.out.println("Voting Site listo y esperando solicitudes...");
 
-			
-			communicator.waitForShutdown();
+            communicator.waitForShutdown();
 
+		} catch (java.lang.Exception e) {
+			e.printStackTrace();
 		}
-		
-	}
-
-
+    }
 }
-

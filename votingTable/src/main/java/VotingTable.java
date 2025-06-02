@@ -27,6 +27,7 @@ public class VotingTable {
 
         } catch (Exception e) {
             System.err.println("Error en VotingTable: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 }

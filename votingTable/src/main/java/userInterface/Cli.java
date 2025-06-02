@@ -7,7 +7,7 @@ import model.Vote;
 
 public class Cli {
 
-	private final Scanner scanner;
+    private final Scanner scanner;
     private VotationController controller;
 
     public Cli(VotationController controller) {
@@ -16,24 +16,45 @@ public class Cli {
     }
 
     public void startVotingProcess() {
+        System.out.println("Welcome to Cli voting system");
+
         while (true) {
-            
-            System.out.println("Welcome to Cli voting system");
-            System.out.println("Enter [id , candidate id] ignore []"); // Mensaje con la instrucción de ignorar corchetes
-
             showCandidates();
-            
-            System.out.print("Your vote: ");
-            String voteInput = scanner.nextLine();
 
-            processAndSendVote(voteInput);
+            System.out.print("Enter Voter ID (or type 'exit' to quit): ");
+            String voterId = scanner.nextLine().trim();
+            if (voterId.equalsIgnoreCase("exit")) {
+                System.out.println("Exiting voting process.");
+                break;
+            }
+            if (voterId.isEmpty()) {
+                System.err.println("Voter ID cannot be empty.");
+                continue;
+            }
 
+            System.out.print("Enter Candidate ID: ");
+            String candidateInput = scanner.nextLine().trim();
+
+            int candidateId;
+            try {
+                candidateId = Integer.parseInt(candidateInput);
+                String[] candidates = controller.getCandidates();
+                if (candidateId < 1 || candidateId > candidates.length) {
+                    System.err.println("Invalid candidate ID. Please enter a number between 1 and " + candidates.length);
+                    continue;
+                }
+            } catch (NumberFormatException e) {
+                System.err.println("Candidate ID must be a number.");
+                continue;
+            }
+
+            Vote vote = new Vote(voterId, candidateId);
+            controller.sendVote(vote);
         }
-        //scanner.close(); 
+         scanner.close(); 
     }
-    
+
     public void showCandidates() {
-        // Asume que controller.getCandidates() devuelve un array de Strings como {"Gabriel", "Juan", "Rony"}
         String[] candidates = controller.getCandidates();
         System.out.println("\n--- Candidates Available ---");
         for (int i = 0; i < candidates.length; i++) {
@@ -41,31 +62,4 @@ public class Cli {
         }
         System.out.println("-----------------------------\n");
     }
-
-    public void processAndSendVote(String voteString) {
-        // No se usan .replace("[", "") ni .replace("]", "") porque la instrucción es "ignore []"
-        String[] parts = voteString.trim().split(",");
-
-        if (parts.length == 2) {
-            String voterId = parts[0].trim();
-            int candidateId = -1; // Valor por defecto
-
-            try {
-                candidateId = Integer.parseInt(parts[1].trim());
-                Vote newVote = new Vote(voterId, candidateId);
-                
-                controller.sendVote(newVote); // Delega la lógica de negocio al controlador
-
-            } catch (NumberFormatException e) {
-                System.err.println("Error: Candidate ID must be a number.");
-            } catch (Exception e) {
-                System.err.println("An unexpected error occurred: " + e.getMessage());
-            }
-        } else {
-            System.err.println("Invalid vote format. Use: VoterID,CandidateID (e.g., UUID123,1)");
-        }
-	}
-
-
-
 }
