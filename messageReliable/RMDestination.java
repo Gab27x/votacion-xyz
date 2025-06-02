@@ -17,7 +17,7 @@ package messageReliable;
 
 public interface RMDestination extends com.zeroc.Ice.Object
 {
-    void reciveMessage(model.ReliableMessage rmessage, ACKServicePrx prx, com.zeroc.Ice.Current current);
+    void reciveMessage(model.Vote vote, ACKServicePrx prx, com.zeroc.Ice.Current current);
 
     /** @hidden */
     static final String[] _iceIds =
@@ -54,12 +54,12 @@ public interface RMDestination extends com.zeroc.Ice.Object
     {
         com.zeroc.Ice.Object._iceCheckMode(null, current.mode);
         com.zeroc.Ice.InputStream istr = inS.startReadParams();
-        model.ReliableMessage iceP_rmessage;
+        model.Vote iceP_vote;
         ACKServicePrx iceP_prx;
-        iceP_rmessage = istr.readSerializable(model.ReliableMessage.class);
+        iceP_vote = istr.readSerializable(model.Vote.class);
         iceP_prx = ACKServicePrx.uncheckedCast(istr.readProxy());
         inS.endReadParams();
-        obj.reciveMessage(iceP_rmessage, iceP_prx, current);
+        obj.reciveMessage(iceP_vote, iceP_prx, current);
         return inS.setResult(inS.writeEmptyParams());
     }
 

@@ -19,8 +19,15 @@ subprojects {
     // Both Client and Server projects share the Printer.ice Slice definitions
     //
     slice {
-        java {
+    java {
+        if (project.name == 'votingSite') {
+            files = [
+                file("../Voting.ice"),
+                file("../ReliableMessage.ice")
+            ]
+        } else {
             files = [file("../Voting.ice")]
+            }
         }
     }
 

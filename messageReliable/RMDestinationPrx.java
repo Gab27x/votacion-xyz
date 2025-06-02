@@ -17,39 +17,39 @@ package messageReliable;
 
 public interface RMDestinationPrx extends com.zeroc.Ice.ObjectPrx
 {
-    default void reciveMessage(model.ReliableMessage rmessage, ACKServicePrx prx)
+    default void reciveMessage(model.Vote vote, ACKServicePrx prx)
     {
-        reciveMessage(rmessage, prx, com.zeroc.Ice.ObjectPrx.noExplicitContext);
+        reciveMessage(vote, prx, com.zeroc.Ice.ObjectPrx.noExplicitContext);
     }
 
-    default void reciveMessage(model.ReliableMessage rmessage, ACKServicePrx prx, java.util.Map<String, String> context)
+    default void reciveMessage(model.Vote vote, ACKServicePrx prx, java.util.Map<String, String> context)
     {
-        _iceI_reciveMessageAsync(rmessage, prx, context, true).waitForResponse();
+        _iceI_reciveMessageAsync(vote, prx, context, true).waitForResponse();
     }
 
-    default java.util.concurrent.CompletableFuture<Void> reciveMessageAsync(model.ReliableMessage rmessage, ACKServicePrx prx)
+    default java.util.concurrent.CompletableFuture<Void> reciveMessageAsync(model.Vote vote, ACKServicePrx prx)
     {
-        return _iceI_reciveMessageAsync(rmessage, prx, com.zeroc.Ice.ObjectPrx.noExplicitContext, false);
+        return _iceI_reciveMessageAsync(vote, prx, com.zeroc.Ice.ObjectPrx.noExplicitContext, false);
     }
 
-    default java.util.concurrent.CompletableFuture<Void> reciveMessageAsync(model.ReliableMessage rmessage, ACKServicePrx prx, java.util.Map<String, String> context)
+    default java.util.concurrent.CompletableFuture<Void> reciveMessageAsync(model.Vote vote, ACKServicePrx prx, java.util.Map<String, String> context)
     {
-        return _iceI_reciveMessageAsync(rmessage, prx, context, false);
+        return _iceI_reciveMessageAsync(vote, prx, context, false);
     }
 
     /**
      * @hidden
-     * @param iceP_rmessage -
+     * @param iceP_vote -
      * @param iceP_prx -
      * @param context -
      * @param sync -
      * @return -
      **/
-    default com.zeroc.IceInternal.OutgoingAsync<Void> _iceI_reciveMessageAsync(model.ReliableMessage iceP_rmessage, ACKServicePrx iceP_prx, java.util.Map<String, String> context, boolean sync)
+    default com.zeroc.IceInternal.OutgoingAsync<Void> _iceI_reciveMessageAsync(model.Vote iceP_vote, ACKServicePrx iceP_prx, java.util.Map<String, String> context, boolean sync)
     {
         com.zeroc.IceInternal.OutgoingAsync<Void> f = new com.zeroc.IceInternal.OutgoingAsync<>(this, "reciveMessage", null, sync, null);
         f.invoke(false, context, null, ostr -> {
-                     ostr.writeSerializable(iceP_rmessage);
+                     ostr.writeSerializable(iceP_vote);
                      ostr.writeProxy(iceP_prx);
                  }, null);
         return f;

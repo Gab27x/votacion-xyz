@@ -53,38 +53,38 @@ public interface RMSourcePrx extends com.zeroc.Ice.ObjectPrx
         return f;
     }
 
-    default void sendMessage(model.Message msg)
+    default void sendMessage(model.Vote vote)
     {
-        sendMessage(msg, com.zeroc.Ice.ObjectPrx.noExplicitContext);
+        sendMessage(vote, com.zeroc.Ice.ObjectPrx.noExplicitContext);
     }
 
-    default void sendMessage(model.Message msg, java.util.Map<String, String> context)
+    default void sendMessage(model.Vote vote, java.util.Map<String, String> context)
     {
-        _iceI_sendMessageAsync(msg, context, true).waitForResponse();
+        _iceI_sendMessageAsync(vote, context, true).waitForResponse();
     }
 
-    default java.util.concurrent.CompletableFuture<Void> sendMessageAsync(model.Message msg)
+    default java.util.concurrent.CompletableFuture<Void> sendMessageAsync(model.Vote vote)
     {
-        return _iceI_sendMessageAsync(msg, com.zeroc.Ice.ObjectPrx.noExplicitContext, false);
+        return _iceI_sendMessageAsync(vote, com.zeroc.Ice.ObjectPrx.noExplicitContext, false);
     }
 
-    default java.util.concurrent.CompletableFuture<Void> sendMessageAsync(model.Message msg, java.util.Map<String, String> context)
+    default java.util.concurrent.CompletableFuture<Void> sendMessageAsync(model.Vote vote, java.util.Map<String, String> context)
     {
-        return _iceI_sendMessageAsync(msg, context, false);
+        return _iceI_sendMessageAsync(vote, context, false);
     }
 
     /**
      * @hidden
-     * @param iceP_msg -
+     * @param iceP_vote -
      * @param context -
      * @param sync -
      * @return -
      **/
-    default com.zeroc.IceInternal.OutgoingAsync<Void> _iceI_sendMessageAsync(model.Message iceP_msg, java.util.Map<String, String> context, boolean sync)
+    default com.zeroc.IceInternal.OutgoingAsync<Void> _iceI_sendMessageAsync(model.Vote iceP_vote, java.util.Map<String, String> context, boolean sync)
     {
         com.zeroc.IceInternal.OutgoingAsync<Void> f = new com.zeroc.IceInternal.OutgoingAsync<>(this, "sendMessage", null, sync, null);
         f.invoke(false, context, null, ostr -> {
-                     ostr.writeSerializable(iceP_msg);
+                     ostr.writeSerializable(iceP_vote);
                  }, null);
         return f;
     }

@@ -17,38 +17,38 @@ package messageReliable;
 
 public interface ACKServicePrx extends com.zeroc.Ice.ObjectPrx
 {
-    default void ack(String messageId)
+    default void ack(String voteID)
     {
-        ack(messageId, com.zeroc.Ice.ObjectPrx.noExplicitContext);
+        ack(voteID, com.zeroc.Ice.ObjectPrx.noExplicitContext);
     }
 
-    default void ack(String messageId, java.util.Map<String, String> context)
+    default void ack(String voteID, java.util.Map<String, String> context)
     {
-        _iceI_ackAsync(messageId, context, true).waitForResponse();
+        _iceI_ackAsync(voteID, context, true).waitForResponse();
     }
 
-    default java.util.concurrent.CompletableFuture<Void> ackAsync(String messageId)
+    default java.util.concurrent.CompletableFuture<Void> ackAsync(String voteID)
     {
-        return _iceI_ackAsync(messageId, com.zeroc.Ice.ObjectPrx.noExplicitContext, false);
+        return _iceI_ackAsync(voteID, com.zeroc.Ice.ObjectPrx.noExplicitContext, false);
     }
 
-    default java.util.concurrent.CompletableFuture<Void> ackAsync(String messageId, java.util.Map<String, String> context)
+    default java.util.concurrent.CompletableFuture<Void> ackAsync(String voteID, java.util.Map<String, String> context)
     {
-        return _iceI_ackAsync(messageId, context, false);
+        return _iceI_ackAsync(voteID, context, false);
     }
 
     /**
      * @hidden
-     * @param iceP_messageId -
+     * @param iceP_voteID -
      * @param context -
      * @param sync -
      * @return -
      **/
-    default com.zeroc.IceInternal.OutgoingAsync<Void> _iceI_ackAsync(String iceP_messageId, java.util.Map<String, String> context, boolean sync)
+    default com.zeroc.IceInternal.OutgoingAsync<Void> _iceI_ackAsync(String iceP_voteID, java.util.Map<String, String> context, boolean sync)
     {
         com.zeroc.IceInternal.OutgoingAsync<Void> f = new com.zeroc.IceInternal.OutgoingAsync<>(this, "ack", null, sync, null);
         f.invoke(false, context, null, ostr -> {
-                     ostr.writeString(iceP_messageId);
+                     ostr.writeString(iceP_voteID);
                  }, null);
         return f;
     }

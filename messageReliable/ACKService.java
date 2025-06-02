@@ -17,7 +17,7 @@ package messageReliable;
 
 public interface ACKService extends com.zeroc.Ice.Object
 {
-    void ack(String messageId, com.zeroc.Ice.Current current);
+    void ack(String voteID, com.zeroc.Ice.Current current);
 
     /** @hidden */
     static final String[] _iceIds =
@@ -54,10 +54,10 @@ public interface ACKService extends com.zeroc.Ice.Object
     {
         com.zeroc.Ice.Object._iceCheckMode(null, current.mode);
         com.zeroc.Ice.InputStream istr = inS.startReadParams();
-        String iceP_messageId;
-        iceP_messageId = istr.readString();
+        String iceP_voteID;
+        iceP_voteID = istr.readString();
         inS.endReadParams();
-        obj.ack(iceP_messageId, current);
+        obj.ack(iceP_voteID, current);
         return inS.setResult(inS.writeEmptyParams());
     }
 

@@ -19,7 +19,7 @@ public interface RMSource extends com.zeroc.Ice.Object
 {
     void setServerProxy(RMDestinationPrx destination, com.zeroc.Ice.Current current);
 
-    void sendMessage(model.Message msg, com.zeroc.Ice.Current current);
+    void sendMessage(model.Vote vote, com.zeroc.Ice.Current current);
 
     /** @hidden */
     static final String[] _iceIds =
@@ -74,10 +74,10 @@ public interface RMSource extends com.zeroc.Ice.Object
     {
         com.zeroc.Ice.Object._iceCheckMode(null, current.mode);
         com.zeroc.Ice.InputStream istr = inS.startReadParams();
-        model.Message iceP_msg;
-        iceP_msg = istr.readSerializable(model.Message.class);
+        model.Vote iceP_vote;
+        iceP_vote = istr.readSerializable(model.Vote.class);
         inS.endReadParams();
-        obj.sendMessage(iceP_msg, current);
+        obj.sendMessage(iceP_vote, current);
         return inS.setResult(inS.writeEmptyParams());
     }
 
