@@ -28,4 +28,8 @@ public class RMSender implements RMSource {
     public void setServerProxy(RMDestinationPrx destination, Current current) {
         notification.setService(destination);
     }
+
+    public void setServer(RMDestinationPrx destination) {
+        notification.setService(destination);
+    }
 }

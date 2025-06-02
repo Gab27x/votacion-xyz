@@ -20,7 +20,7 @@ subprojects {
     //
     slice {
     java {
-        if (project.name == 'votingSite') {
+        if (project.name == 'votingSite' || project.name == 'server') {
             files = [
                 file("../Voting.ice"),
                 file("../ReliableMessage.ice")
