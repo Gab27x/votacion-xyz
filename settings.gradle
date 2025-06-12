@@ -11,3 +11,4 @@ rootProject.name = 'votacion-xyz'
 include('votingSite')
 include('votingTable')
 include('server')
+include('loadTester')
