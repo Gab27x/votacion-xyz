@@ -17,22 +17,22 @@ package Demo;
 
 public interface VotingTablePrx extends com.zeroc.Ice.ObjectPrx
 {
-    default boolean vote(String document, int candidateId)
+    default void vote(String document, int candidateId)
     {
-        return vote(document, candidateId, com.zeroc.Ice.ObjectPrx.noExplicitContext);
+        vote(document, candidateId, com.zeroc.Ice.ObjectPrx.noExplicitContext);
     }
 
-    default boolean vote(String document, int candidateId, java.util.Map<String, String> context)
+    default void vote(String document, int candidateId, java.util.Map<String, String> context)
     {
-        return _iceI_voteAsync(document, candidateId, context, true).waitForResponse();
+        _iceI_voteAsync(document, candidateId, context, true).waitForResponse();
     }
 
-    default java.util.concurrent.CompletableFuture<java.lang.Boolean> voteAsync(String document, int candidateId)
+    default java.util.concurrent.CompletableFuture<Void> voteAsync(String document, int candidateId)
     {
         return _iceI_voteAsync(document, candidateId, com.zeroc.Ice.ObjectPrx.noExplicitContext, false);
     }
 
-    default java.util.concurrent.CompletableFuture<java.lang.Boolean> voteAsync(String document, int candidateId, java.util.Map<String, String> context)
+    default java.util.concurrent.CompletableFuture<Void> voteAsync(String document, int candidateId, java.util.Map<String, String> context)
     {
         return _iceI_voteAsync(document, candidateId, context, false);
     }
@@ -45,17 +45,13 @@ public interface VotingTablePrx extends com.zeroc.Ice.ObjectPrx
      * @param sync -
      * @return -
      **/
-    default com.zeroc.IceInternal.OutgoingAsync<java.lang.Boolean> _iceI_voteAsync(String iceP_document, int iceP_candidateId, java.util.Map<String, String> context, boolean sync)
+    default com.zeroc.IceInternal.OutgoingAsync<Void> _iceI_voteAsync(String iceP_document, int iceP_candidateId, java.util.Map<String, String> context, boolean sync)
     {
-        com.zeroc.IceInternal.OutgoingAsync<java.lang.Boolean> f = new com.zeroc.IceInternal.OutgoingAsync<>(this, "vote", null, sync, null);
-        f.invoke(true, context, null, ostr -> {
+        com.zeroc.IceInternal.OutgoingAsync<Void> f = new com.zeroc.IceInternal.OutgoingAsync<>(this, "vote", null, sync, null);
+        f.invoke(false, context, null, ostr -> {
                      ostr.writeString(iceP_document);
                      ostr.writeInt(iceP_candidateId);
-                 }, istr -> {
-                     boolean ret;
-                     ret = istr.readBool();
-                     return ret;
-                 });
+                 }, null);
         return f;
     }
 
