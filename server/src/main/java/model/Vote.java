@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class Vote implements Serializable {
     private String voterId;
     private String candidate;
+    public char[] vote;
 
     public Vote(String candidate) {
         this.candidate = candidate;

@@ -13,17 +13,17 @@
 // </auto-generated>
 //
 
-package messageReliable;
+package reliableMessage;
 
 public interface ACKService extends com.zeroc.Ice.Object
 {
-    void ack(String voteID, com.zeroc.Ice.Current current);
+    void ack(String messageId, com.zeroc.Ice.Current current);
 
     /** @hidden */
     static final String[] _iceIds =
     {
         "::Ice::Object",
-        "::messageReliable::ACKService"
+        "::reliableMessage::ACKService"
     };
 
     @Override
@@ -40,7 +40,7 @@ public interface ACKService extends com.zeroc.Ice.Object
 
     static String ice_staticId()
     {
-        return "::messageReliable::ACKService";
+        return "::reliableMessage::ACKService";
     }
 
     /**
@@ -54,10 +54,10 @@ public interface ACKService extends com.zeroc.Ice.Object
     {
         com.zeroc.Ice.Object._iceCheckMode(null, current.mode);
         com.zeroc.Ice.InputStream istr = inS.startReadParams();
-        String iceP_voteID;
-        iceP_voteID = istr.readString();
+        String iceP_messageId;
+        iceP_messageId = istr.readString();
         inS.endReadParams();
-        obj.ack(iceP_voteID, current);
+        obj.ack(iceP_messageId, current);
         return inS.setResult(inS.writeEmptyParams());
     }
 

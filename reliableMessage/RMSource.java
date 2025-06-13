@@ -13,17 +13,19 @@
 // </auto-generated>
 //
 
-package messageReliable;
+package reliableMessage;
 
-public interface RMDestination extends com.zeroc.Ice.Object
+public interface RMSource extends com.zeroc.Ice.Object
 {
-    void reciveMessage(model.Vote vote, ACKServicePrx prx, com.zeroc.Ice.Current current);
+    void setServerProxy(RMDestinationPrx destination, com.zeroc.Ice.Current current);
+
+    void sendMessage(model.Vote vote, com.zeroc.Ice.Current current);
 
     /** @hidden */
     static final String[] _iceIds =
     {
         "::Ice::Object",
-        "::messageReliable::RMDestination"
+        "::reliableMessage::RMSource"
     };
 
     @Override
@@ -40,7 +42,7 @@ public interface RMDestination extends com.zeroc.Ice.Object
 
     static String ice_staticId()
     {
-        return "::messageReliable::RMDestination";
+        return "::reliableMessage::RMSource";
     }
 
     /**
@@ -50,16 +52,32 @@ public interface RMDestination extends com.zeroc.Ice.Object
      * @param current -
      * @return -
     **/
-    static java.util.concurrent.CompletionStage<com.zeroc.Ice.OutputStream> _iceD_reciveMessage(RMDestination obj, final com.zeroc.IceInternal.Incoming inS, com.zeroc.Ice.Current current)
+    static java.util.concurrent.CompletionStage<com.zeroc.Ice.OutputStream> _iceD_setServerProxy(RMSource obj, final com.zeroc.IceInternal.Incoming inS, com.zeroc.Ice.Current current)
+    {
+        com.zeroc.Ice.Object._iceCheckMode(null, current.mode);
+        com.zeroc.Ice.InputStream istr = inS.startReadParams();
+        RMDestinationPrx iceP_destination;
+        iceP_destination = RMDestinationPrx.uncheckedCast(istr.readProxy());
+        inS.endReadParams();
+        obj.setServerProxy(iceP_destination, current);
+        return inS.setResult(inS.writeEmptyParams());
+    }
+
+    /**
+     * @hidden
+     * @param obj -
+     * @param inS -
+     * @param current -
+     * @return -
+    **/
+    static java.util.concurrent.CompletionStage<com.zeroc.Ice.OutputStream> _iceD_sendMessage(RMSource obj, final com.zeroc.IceInternal.Incoming inS, com.zeroc.Ice.Current current)
     {
         com.zeroc.Ice.Object._iceCheckMode(null, current.mode);
         com.zeroc.Ice.InputStream istr = inS.startReadParams();
         model.Vote iceP_vote;
-        ACKServicePrx iceP_prx;
         iceP_vote = istr.readSerializable(model.Vote.class);
-        iceP_prx = ACKServicePrx.uncheckedCast(istr.readProxy());
         inS.endReadParams();
-        obj.reciveMessage(iceP_vote, iceP_prx, current);
+        obj.sendMessage(iceP_vote, current);
         return inS.setResult(inS.writeEmptyParams());
     }
 
@@ -70,7 +88,8 @@ public interface RMDestination extends com.zeroc.Ice.Object
         "ice_ids",
         "ice_isA",
         "ice_ping",
-        "reciveMessage"
+        "sendMessage",
+        "setServerProxy"
     };
 
     /** @hidden */
@@ -104,7 +123,11 @@ public interface RMDestination extends com.zeroc.Ice.Object
             }
             case 4:
             {
-                return _iceD_reciveMessage(this, in, current);
+                return _iceD_sendMessage(this, in, current);
+            }
+            case 5:
+            {
+                return _iceD_setServerProxy(this, in, current);
             }
         }
 

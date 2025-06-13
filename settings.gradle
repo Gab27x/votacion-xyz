@@ -8,7 +8,7 @@
  */
 
 rootProject.name = 'votacion-xyz'
-include('votingSite')
 include('votingTable')
+include('reliableServer')
 include('server')
 include('loadTester')

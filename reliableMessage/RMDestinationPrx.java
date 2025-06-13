@@ -13,42 +13,44 @@
 // </auto-generated>
 //
 
-package messageReliable;
+package reliableMessage;
 
-public interface ACKServicePrx extends com.zeroc.Ice.ObjectPrx
+public interface RMDestinationPrx extends com.zeroc.Ice.ObjectPrx
 {
-    default void ack(String voteID)
+    default void reciveMessage(model.ReliableMessage rmessage, ACKServicePrx prx)
     {
-        ack(voteID, com.zeroc.Ice.ObjectPrx.noExplicitContext);
+        reciveMessage(rmessage, prx, com.zeroc.Ice.ObjectPrx.noExplicitContext);
     }
 
-    default void ack(String voteID, java.util.Map<String, String> context)
+    default void reciveMessage(model.ReliableMessage rmessage, ACKServicePrx prx, java.util.Map<String, String> context)
     {
-        _iceI_ackAsync(voteID, context, true).waitForResponse();
+        _iceI_reciveMessageAsync(rmessage, prx, context, true).waitForResponse();
     }
 
-    default java.util.concurrent.CompletableFuture<Void> ackAsync(String voteID)
+    default java.util.concurrent.CompletableFuture<Void> reciveMessageAsync(model.ReliableMessage rmessage, ACKServicePrx prx)
     {
-        return _iceI_ackAsync(voteID, com.zeroc.Ice.ObjectPrx.noExplicitContext, false);
+        return _iceI_reciveMessageAsync(rmessage, prx, com.zeroc.Ice.ObjectPrx.noExplicitContext, false);
     }
 
-    default java.util.concurrent.CompletableFuture<Void> ackAsync(String voteID, java.util.Map<String, String> context)
+    default java.util.concurrent.CompletableFuture<Void> reciveMessageAsync(model.ReliableMessage rmessage, ACKServicePrx prx, java.util.Map<String, String> context)
     {
-        return _iceI_ackAsync(voteID, context, false);
+        return _iceI_reciveMessageAsync(rmessage, prx, context, false);
     }
 
     /**
      * @hidden
-     * @param iceP_voteID -
+     * @param iceP_rmessage -
+     * @param iceP_prx -
      * @param context -
      * @param sync -
      * @return -
      **/
-    default com.zeroc.IceInternal.OutgoingAsync<Void> _iceI_ackAsync(String iceP_voteID, java.util.Map<String, String> context, boolean sync)
+    default com.zeroc.IceInternal.OutgoingAsync<Void> _iceI_reciveMessageAsync(model.ReliableMessage iceP_rmessage, ACKServicePrx iceP_prx, java.util.Map<String, String> context, boolean sync)
     {
-        com.zeroc.IceInternal.OutgoingAsync<Void> f = new com.zeroc.IceInternal.OutgoingAsync<>(this, "ack", null, sync, null);
+        com.zeroc.IceInternal.OutgoingAsync<Void> f = new com.zeroc.IceInternal.OutgoingAsync<>(this, "reciveMessage", null, sync, null);
         f.invoke(false, context, null, ostr -> {
-                     ostr.writeString(iceP_voteID);
+                     ostr.writeSerializable(iceP_rmessage);
+                     ostr.writeProxy(iceP_prx);
                  }, null);
         return f;
     }
@@ -59,9 +61,9 @@ public interface ACKServicePrx extends com.zeroc.Ice.ObjectPrx
      * @param obj The untyped proxy.
      * @return A proxy for this type, or null if the object does not support this type.
      **/
-    static ACKServicePrx checkedCast(com.zeroc.Ice.ObjectPrx obj)
+    static RMDestinationPrx checkedCast(com.zeroc.Ice.ObjectPrx obj)
     {
-        return com.zeroc.Ice.ObjectPrx._checkedCast(obj, ice_staticId(), ACKServicePrx.class, _ACKServicePrxI.class);
+        return com.zeroc.Ice.ObjectPrx._checkedCast(obj, ice_staticId(), RMDestinationPrx.class, _RMDestinationPrxI.class);
     }
 
     /**
@@ -71,9 +73,9 @@ public interface ACKServicePrx extends com.zeroc.Ice.ObjectPrx
      * @param context The Context map to send with the invocation.
      * @return A proxy for this type, or null if the object does not support this type.
      **/
-    static ACKServicePrx checkedCast(com.zeroc.Ice.ObjectPrx obj, java.util.Map<String, String> context)
+    static RMDestinationPrx checkedCast(com.zeroc.Ice.ObjectPrx obj, java.util.Map<String, String> context)
     {
-        return com.zeroc.Ice.ObjectPrx._checkedCast(obj, context, ice_staticId(), ACKServicePrx.class, _ACKServicePrxI.class);
+        return com.zeroc.Ice.ObjectPrx._checkedCast(obj, context, ice_staticId(), RMDestinationPrx.class, _RMDestinationPrxI.class);
     }
 
     /**
@@ -83,9 +85,9 @@ public interface ACKServicePrx extends com.zeroc.Ice.ObjectPrx
      * @param facet The name of the desired facet.
      * @return A proxy for this type, or null if the object does not support this type.
      **/
-    static ACKServicePrx checkedCast(com.zeroc.Ice.ObjectPrx obj, String facet)
+    static RMDestinationPrx checkedCast(com.zeroc.Ice.ObjectPrx obj, String facet)
     {
-        return com.zeroc.Ice.ObjectPrx._checkedCast(obj, facet, ice_staticId(), ACKServicePrx.class, _ACKServicePrxI.class);
+        return com.zeroc.Ice.ObjectPrx._checkedCast(obj, facet, ice_staticId(), RMDestinationPrx.class, _RMDestinationPrxI.class);
     }
 
     /**
@@ -96,9 +98,9 @@ public interface ACKServicePrx extends com.zeroc.Ice.ObjectPrx
      * @param context The Context map to send with the invocation.
      * @return A proxy for this type, or null if the object does not support this type.
      **/
-    static ACKServicePrx checkedCast(com.zeroc.Ice.ObjectPrx obj, String facet, java.util.Map<String, String> context)
+    static RMDestinationPrx checkedCast(com.zeroc.Ice.ObjectPrx obj, String facet, java.util.Map<String, String> context)
     {
-        return com.zeroc.Ice.ObjectPrx._checkedCast(obj, facet, context, ice_staticId(), ACKServicePrx.class, _ACKServicePrxI.class);
+        return com.zeroc.Ice.ObjectPrx._checkedCast(obj, facet, context, ice_staticId(), RMDestinationPrx.class, _RMDestinationPrxI.class);
     }
 
     /**
@@ -106,9 +108,9 @@ public interface ACKServicePrx extends com.zeroc.Ice.ObjectPrx
      * @param obj The untyped proxy.
      * @return A proxy for this type.
      **/
-    static ACKServicePrx uncheckedCast(com.zeroc.Ice.ObjectPrx obj)
+    static RMDestinationPrx uncheckedCast(com.zeroc.Ice.ObjectPrx obj)
     {
-        return com.zeroc.Ice.ObjectPrx._uncheckedCast(obj, ACKServicePrx.class, _ACKServicePrxI.class);
+        return com.zeroc.Ice.ObjectPrx._uncheckedCast(obj, RMDestinationPrx.class, _RMDestinationPrxI.class);
     }
 
     /**
@@ -117,9 +119,9 @@ public interface ACKServicePrx extends com.zeroc.Ice.ObjectPrx
      * @param facet The name of the desired facet.
      * @return A proxy for this type.
      **/
-    static ACKServicePrx uncheckedCast(com.zeroc.Ice.ObjectPrx obj, String facet)
+    static RMDestinationPrx uncheckedCast(com.zeroc.Ice.ObjectPrx obj, String facet)
     {
-        return com.zeroc.Ice.ObjectPrx._uncheckedCast(obj, facet, ACKServicePrx.class, _ACKServicePrxI.class);
+        return com.zeroc.Ice.ObjectPrx._uncheckedCast(obj, facet, RMDestinationPrx.class, _RMDestinationPrxI.class);
     }
 
     /**
@@ -128,9 +130,9 @@ public interface ACKServicePrx extends com.zeroc.Ice.ObjectPrx
      * @return A proxy with the specified per-proxy context.
      **/
     @Override
-    default ACKServicePrx ice_context(java.util.Map<String, String> newContext)
+    default RMDestinationPrx ice_context(java.util.Map<String, String> newContext)
     {
-        return (ACKServicePrx)_ice_context(newContext);
+        return (RMDestinationPrx)_ice_context(newContext);
     }
 
     /**
@@ -139,9 +141,9 @@ public interface ACKServicePrx extends com.zeroc.Ice.ObjectPrx
      * @return A proxy with the specified adapter ID.
      **/
     @Override
-    default ACKServicePrx ice_adapterId(String newAdapterId)
+    default RMDestinationPrx ice_adapterId(String newAdapterId)
     {
-        return (ACKServicePrx)_ice_adapterId(newAdapterId);
+        return (RMDestinationPrx)_ice_adapterId(newAdapterId);
     }
 
     /**
@@ -150,9 +152,9 @@ public interface ACKServicePrx extends com.zeroc.Ice.ObjectPrx
      * @return A proxy with the specified endpoints.
      **/
     @Override
-    default ACKServicePrx ice_endpoints(com.zeroc.Ice.Endpoint[] newEndpoints)
+    default RMDestinationPrx ice_endpoints(com.zeroc.Ice.Endpoint[] newEndpoints)
     {
-        return (ACKServicePrx)_ice_endpoints(newEndpoints);
+        return (RMDestinationPrx)_ice_endpoints(newEndpoints);
     }
 
     /**
@@ -161,9 +163,9 @@ public interface ACKServicePrx extends com.zeroc.Ice.ObjectPrx
      * @return A proxy with the specified locator cache timeout.
      **/
     @Override
-    default ACKServicePrx ice_locatorCacheTimeout(int newTimeout)
+    default RMDestinationPrx ice_locatorCacheTimeout(int newTimeout)
     {
-        return (ACKServicePrx)_ice_locatorCacheTimeout(newTimeout);
+        return (RMDestinationPrx)_ice_locatorCacheTimeout(newTimeout);
     }
 
     /**
@@ -172,9 +174,9 @@ public interface ACKServicePrx extends com.zeroc.Ice.ObjectPrx
      * @return A proxy with the specified invocation timeout.
      **/
     @Override
-    default ACKServicePrx ice_invocationTimeout(int newTimeout)
+    default RMDestinationPrx ice_invocationTimeout(int newTimeout)
     {
-        return (ACKServicePrx)_ice_invocationTimeout(newTimeout);
+        return (RMDestinationPrx)_ice_invocationTimeout(newTimeout);
     }
 
     /**
@@ -183,9 +185,9 @@ public interface ACKServicePrx extends com.zeroc.Ice.ObjectPrx
      * @return A proxy with the specified caching policy.
      **/
     @Override
-    default ACKServicePrx ice_connectionCached(boolean newCache)
+    default RMDestinationPrx ice_connectionCached(boolean newCache)
     {
-        return (ACKServicePrx)_ice_connectionCached(newCache);
+        return (RMDestinationPrx)_ice_connectionCached(newCache);
     }
 
     /**
@@ -194,9 +196,9 @@ public interface ACKServicePrx extends com.zeroc.Ice.ObjectPrx
      * @return A proxy with the specified endpoint selection policy.
      **/
     @Override
-    default ACKServicePrx ice_endpointSelection(com.zeroc.Ice.EndpointSelectionType newType)
+    default RMDestinationPrx ice_endpointSelection(com.zeroc.Ice.EndpointSelectionType newType)
     {
-        return (ACKServicePrx)_ice_endpointSelection(newType);
+        return (RMDestinationPrx)_ice_endpointSelection(newType);
     }
 
     /**
@@ -207,9 +209,9 @@ public interface ACKServicePrx extends com.zeroc.Ice.ObjectPrx
      * @return A proxy with the specified selection policy.
      **/
     @Override
-    default ACKServicePrx ice_secure(boolean b)
+    default RMDestinationPrx ice_secure(boolean b)
     {
-        return (ACKServicePrx)_ice_secure(b);
+        return (RMDestinationPrx)_ice_secure(b);
     }
 
     /**
@@ -218,9 +220,9 @@ public interface ACKServicePrx extends com.zeroc.Ice.ObjectPrx
      * @return A proxy with the specified encoding version.
      **/
     @Override
-    default ACKServicePrx ice_encodingVersion(com.zeroc.Ice.EncodingVersion e)
+    default RMDestinationPrx ice_encodingVersion(com.zeroc.Ice.EncodingVersion e)
     {
-        return (ACKServicePrx)_ice_encodingVersion(e);
+        return (RMDestinationPrx)_ice_encodingVersion(e);
     }
 
     /**
@@ -231,9 +233,9 @@ public interface ACKServicePrx extends com.zeroc.Ice.ObjectPrx
      * @return A proxy with the specified selection policy.
      **/
     @Override
-    default ACKServicePrx ice_preferSecure(boolean b)
+    default RMDestinationPrx ice_preferSecure(boolean b)
     {
-        return (ACKServicePrx)_ice_preferSecure(b);
+        return (RMDestinationPrx)_ice_preferSecure(b);
     }
 
     /**
@@ -242,9 +244,9 @@ public interface ACKServicePrx extends com.zeroc.Ice.ObjectPrx
      * @return A proxy with the specified router.
      **/
     @Override
-    default ACKServicePrx ice_router(com.zeroc.Ice.RouterPrx router)
+    default RMDestinationPrx ice_router(com.zeroc.Ice.RouterPrx router)
     {
-        return (ACKServicePrx)_ice_router(router);
+        return (RMDestinationPrx)_ice_router(router);
     }
 
     /**
@@ -253,9 +255,9 @@ public interface ACKServicePrx extends com.zeroc.Ice.ObjectPrx
      * @return A proxy with the specified locator.
      **/
     @Override
-    default ACKServicePrx ice_locator(com.zeroc.Ice.LocatorPrx locator)
+    default RMDestinationPrx ice_locator(com.zeroc.Ice.LocatorPrx locator)
     {
-        return (ACKServicePrx)_ice_locator(locator);
+        return (RMDestinationPrx)_ice_locator(locator);
     }
 
     /**
@@ -264,9 +266,9 @@ public interface ACKServicePrx extends com.zeroc.Ice.ObjectPrx
      * @return A proxy with the specified collocation optimization.
      **/
     @Override
-    default ACKServicePrx ice_collocationOptimized(boolean b)
+    default RMDestinationPrx ice_collocationOptimized(boolean b)
     {
-        return (ACKServicePrx)_ice_collocationOptimized(b);
+        return (RMDestinationPrx)_ice_collocationOptimized(b);
     }
 
     /**
@@ -274,9 +276,9 @@ public interface ACKServicePrx extends com.zeroc.Ice.ObjectPrx
      * @return A proxy that uses twoway invocations.
      **/
     @Override
-    default ACKServicePrx ice_twoway()
+    default RMDestinationPrx ice_twoway()
     {
-        return (ACKServicePrx)_ice_twoway();
+        return (RMDestinationPrx)_ice_twoway();
     }
 
     /**
@@ -284,9 +286,9 @@ public interface ACKServicePrx extends com.zeroc.Ice.ObjectPrx
      * @return A proxy that uses oneway invocations.
      **/
     @Override
-    default ACKServicePrx ice_oneway()
+    default RMDestinationPrx ice_oneway()
     {
-        return (ACKServicePrx)_ice_oneway();
+        return (RMDestinationPrx)_ice_oneway();
     }
 
     /**
@@ -294,9 +296,9 @@ public interface ACKServicePrx extends com.zeroc.Ice.ObjectPrx
      * @return A proxy that uses batch oneway invocations.
      **/
     @Override
-    default ACKServicePrx ice_batchOneway()
+    default RMDestinationPrx ice_batchOneway()
     {
-        return (ACKServicePrx)_ice_batchOneway();
+        return (RMDestinationPrx)_ice_batchOneway();
     }
 
     /**
@@ -304,9 +306,9 @@ public interface ACKServicePrx extends com.zeroc.Ice.ObjectPrx
      * @return A proxy that uses datagram invocations.
      **/
     @Override
-    default ACKServicePrx ice_datagram()
+    default RMDestinationPrx ice_datagram()
     {
-        return (ACKServicePrx)_ice_datagram();
+        return (RMDestinationPrx)_ice_datagram();
     }
 
     /**
@@ -314,9 +316,9 @@ public interface ACKServicePrx extends com.zeroc.Ice.ObjectPrx
      * @return A proxy that uses batch datagram invocations.
      **/
     @Override
-    default ACKServicePrx ice_batchDatagram()
+    default RMDestinationPrx ice_batchDatagram()
     {
-        return (ACKServicePrx)_ice_batchDatagram();
+        return (RMDestinationPrx)_ice_batchDatagram();
     }
 
     /**
@@ -325,9 +327,9 @@ public interface ACKServicePrx extends com.zeroc.Ice.ObjectPrx
      * @return A proxy with the specified compression setting.
      **/
     @Override
-    default ACKServicePrx ice_compress(boolean co)
+    default RMDestinationPrx ice_compress(boolean co)
     {
-        return (ACKServicePrx)_ice_compress(co);
+        return (RMDestinationPrx)_ice_compress(co);
     }
 
     /**
@@ -336,9 +338,9 @@ public interface ACKServicePrx extends com.zeroc.Ice.ObjectPrx
      * @return A proxy with the specified timeout.
      **/
     @Override
-    default ACKServicePrx ice_timeout(int t)
+    default RMDestinationPrx ice_timeout(int t)
     {
-        return (ACKServicePrx)_ice_timeout(t);
+        return (RMDestinationPrx)_ice_timeout(t);
     }
 
     /**
@@ -347,9 +349,9 @@ public interface ACKServicePrx extends com.zeroc.Ice.ObjectPrx
      * @return A proxy with the specified connection ID.
      **/
     @Override
-    default ACKServicePrx ice_connectionId(String connectionId)
+    default RMDestinationPrx ice_connectionId(String connectionId)
     {
-        return (ACKServicePrx)_ice_connectionId(connectionId);
+        return (RMDestinationPrx)_ice_connectionId(connectionId);
     }
 
     /**
@@ -358,13 +360,13 @@ public interface ACKServicePrx extends com.zeroc.Ice.ObjectPrx
      * @return A fixed proxy bound to the given connection.
      **/
     @Override
-    default ACKServicePrx ice_fixed(com.zeroc.Ice.Connection connection)
+    default RMDestinationPrx ice_fixed(com.zeroc.Ice.Connection connection)
     {
-        return (ACKServicePrx)_ice_fixed(connection);
+        return (RMDestinationPrx)_ice_fixed(connection);
     }
 
     static String ice_staticId()
     {
-        return "::messageReliable::ACKService";
+        return "::reliableMessage::RMDestination";
     }
 }

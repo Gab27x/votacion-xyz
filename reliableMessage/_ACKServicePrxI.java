@@ -13,10 +13,10 @@
 // </auto-generated>
 //
 
-package messageReliable;
+package reliableMessage;
 
 /** @hidden */
-public class _RMDestinationPrxI extends com.zeroc.Ice._ObjectPrxI implements RMDestinationPrx
+public class _ACKServicePrxI extends com.zeroc.Ice._ObjectPrxI implements ACKServicePrx
 {
     /** @hidden */
     public static final long serialVersionUID = 0L;

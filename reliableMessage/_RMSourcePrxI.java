@@ -13,7 +13,7 @@
 // </auto-generated>
 //
 
-package messageReliable;
+package reliableMessage;
 
 /** @hidden */
 public class _RMSourcePrxI extends com.zeroc.Ice._ObjectPrxI implements RMSourcePrx
