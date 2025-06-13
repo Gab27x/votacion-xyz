@@ -7,7 +7,7 @@ public class Server {
     public static void main(String[] args) {
         System.out.println("Server is starting up...");
 
-        try (Communicator communicator = Util.initialize(args, "server.cfg")) {
+        try (Communicator communicator = Util.initialize(args, "Server.cfg")) {
             ServiceImp imp = new ServiceImp();
 
             ObjectAdapter adapter = communicator.createObjectAdapter("Server");

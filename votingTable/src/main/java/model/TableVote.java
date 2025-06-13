@@ -1,11 +1,11 @@
 package model;
 
-public class Vote {
+public class TableVote {
 	
 	private String id;
 	private int candidateId;
 
-	public Vote(String id, int candidateId) {
+	public TableVote(String id, int candidateId) {
 		this.id = id;
 		this.candidateId = candidateId;
 

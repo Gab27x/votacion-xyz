@@ -3,7 +3,7 @@ package userInterface;
 import java.util.Scanner;
 
 import controller.VotationController;
-import model.Vote;
+import model.TableVote;
 
 public class Cli {
 
@@ -40,7 +40,8 @@ public class Cli {
                 candidateId = Integer.parseInt(candidateInput);
                 String[] candidates = controller.getCandidates();
                 if (candidateId < 1 || candidateId > candidates.length) {
-                    System.err.println("Invalid candidate ID. Please enter a number between 1 and " + candidates.length);
+                    System.err
+                            .println("Invalid candidate ID. Please enter a number between 1 and " + candidates.length);
                     continue;
                 }
             } catch (NumberFormatException e) {
@@ -48,10 +49,10 @@ public class Cli {
                 continue;
             }
 
-            Vote vote = new Vote(voterId, candidateId);
+            TableVote vote = new TableVote(voterId, candidateId);
             controller.sendVote(vote);
         }
-         scanner.close(); 
+        scanner.close();
     }
 
     public void showCandidates() {

@@ -4,7 +4,7 @@ import com.zeroc.Ice.ObjectAdapter;
 import com.zeroc.Ice.Util;
 
 import controller.VotationController;
-import model.Vote;
+import model.TableVote;
 import reliableMessage.RMSourcePrx;
 
 public class VotingTable implements Demo.VotingTable {
@@ -13,7 +13,7 @@ public class VotingTable implements Demo.VotingTable {
 
     @Override
     public void vote(String document, int candidateId, Current current) {
-        Vote newVote = new Vote(document, candidateId);
+        TableVote newVote = new TableVote(document, candidateId);
         controller.sendVote(newVote);
     }
 
@@ -29,7 +29,7 @@ public class VotingTable implements Demo.VotingTable {
                 throw new RuntimeException("Failed to obtain proxy to Sender.");
             }
 
-            controller = new VotationController(sitePrx);
+            controller = new VotationController(rm);
 
             VotingTable servant = new VotingTable();
 
