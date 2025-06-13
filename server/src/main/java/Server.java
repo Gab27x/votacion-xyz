@@ -5,16 +5,25 @@ import com.zeroc.Ice.Util;
 public class Server {
 
     public static void main(String[] args) {
-        Communicator com = Util.initialize();
+        System.out.println("Server is starting up...");
 
-        ServiceImp imp = new ServiceImp(); // Implementación de RMDestination
+        try (Communicator communicator = Util.initialize(args, "Server.cfg")) {
+            ServiceImp imp = new ServiceImp();
 
-        ObjectAdapter adapter = com.createObjectAdapterWithEndpoints("Server", "tcp -h localhost -p 10012");
-        adapter.add(imp, Util.stringToIdentity("Service"));
+            ObjectAdapter adapter = communicator.createObjectAdapter("Server");
+            adapter.add(imp, Util.stringToIdentity("Service"));
+            adapter.activate();
 
-        adapter.activate();
-        System.out.println("[Server] Esperando mensajes...");
-        com.waitForShutdown();
+            System.out.println("Server is up and running.");
+
+            communicator.waitForShutdown();
+
+            System.out.println("Server is shutting down.");
+
+        } catch (Exception e) {
+            System.err.println("Server encountered an error: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 }
 

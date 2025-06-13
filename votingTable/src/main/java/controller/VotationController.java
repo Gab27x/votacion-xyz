@@ -1,15 +1,17 @@
 package controller;
 
-import Demo.VotingSitePrx;
+import reliableMessage.RMSourcePrx;
+import model.TableVote;
 import model.Vote;
+
 import userInterface.Cli;
 
 public class VotationController implements Runnable {
 
     private Cli cli;
-    private VotingSitePrx sitePrx; // Proxy a VotingSite remoto
+    private RMSourcePrx sitePrx; // Proxy a VotingSite remoto
 
-    public VotationController(VotingSitePrx sitePrx) {
+    public VotationController(RMSourcePrx sitePrx) {
         this.cli = new Cli(this);
         this.sitePrx = sitePrx;
     }
@@ -25,13 +27,14 @@ public class VotationController implements Runnable {
         return new String[]{"Gabriel", "Juan", "Rony"};
     }
 
-    public void sendVote(Vote vote) {
+    public void sendVote(TableVote vote) {
         System.out.println("VotationController: Voto recibido: " + vote.getId() + " para candidato ID: " + vote.getCandidateId());
 
         // Llama al proxy remoto de VotingSite (que actúa como RMSource)
         try {
-            sitePrx.send(vote.getCandidateId());
+            sitePrx.sendMessage(new Vote(String.valueOf(vote.getCandidateId())));
             System.out.println("Voto enviado al VotingSite.");
+
         } catch (Exception e) {
             System.err.println("Error enviando voto a VotingSite: " + e.getMessage());
         }

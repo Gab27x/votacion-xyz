@@ -1,18 +1,20 @@
-module messageReliable {
+module reliableMessage{
 
+    ["java:serializable:model.ReliableMessage"]
+    sequence<byte> RMessage;
     ["java:serializable:model.Vote"]
-    sequence<byte> VoteMessage;
+    sequence<byte> Vote;
 
-    interface ACKService {
-        void ack(string voteID);
+
+    interface ACKService{
+        void ack(string messageId);
     }
-
-    interface RMDestination {
-        void reciveMessage(VoteMessage vote, ACKService* prx);
+    interface RMDestination{
+        void reciveMessage(RMessage rmessage, ACKService* prx);
     }
-
-    interface RMSource {
+    interface RMSource{
         void setServerProxy(RMDestination* destination);
-        void sendMessage(VoteMessage vote);
+        void sendMessage(Vote vote);
     }
+
 }

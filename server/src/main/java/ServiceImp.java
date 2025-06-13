@@ -1,17 +1,18 @@
 import com.zeroc.Ice.Current;
+
+
 import model.ReliableMessage;
-import model.Vote;
-import messageReliable.ACKServicePrx;
-import messageReliable.RMDestination;
+
+import reliableMessage.ACKServicePrx;
+import reliableMessage.RMDestination;
 
 public class ServiceImp implements RMDestination {
 
     @Override
-    public void reciveMessage(Vote vote, ACKServicePrx prx, Current current) {
-        // Lógica de recepción del voto
-        System.out.println("Voto recibido desde VotingSite:");
-
-        prx.ack(vote.getCandidate());
+    public void reciveMessage(ReliableMessage rmessage, ACKServicePrx prx, Current current) {
+        System.out.println(rmessage.getVote().vote);
+        prx.ack(rmessage.getUuid());
     }
-}
 
+    
+}
