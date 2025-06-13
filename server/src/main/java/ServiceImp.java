@@ -5,7 +5,8 @@ import model.ReliableMessage;
 
 import reliableMessage.ACKServicePrx;
 import reliableMessage.RMDestination;
-public class ServiceImp implements  RMDestination{
+
+public class ServiceImp implements RMDestination {
 
     @Override
     public void reciveMessage(ReliableMessage rmessage, ACKServicePrx prx, Current current) {

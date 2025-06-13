@@ -2,9 +2,10 @@ import com.zeroc.Ice.Communicator;
 import com.zeroc.Ice.Current;
 import com.zeroc.Ice.ObjectAdapter;
 import com.zeroc.Ice.Util;
+
 import controller.VotationController;
 import model.Vote;
-import Demo.VotingSitePrx;
+import reliableMessage.RMSourcePrx;
 
 public class VotingTable implements Demo.VotingTable {
 
@@ -21,12 +22,11 @@ public class VotingTable implements Demo.VotingTable {
 
         try (Communicator communicator = Util.initialize(args, "VotingTable.cfg")) {
 
-            VotingSitePrx sitePrx = VotingSitePrx.checkedCast(
-                communicator.propertyToProxy("VotingSite.Proxy")
-            );
+            RMSourcePrx rm = RMSourcePrx.checkedCast(
+                    communicator.propertyToProxy("Sender.Proxy"));
 
-            if (sitePrx == null) {
-                throw new RuntimeException("Failed to obtain proxy to VotingSite.");
+            if (rm == null) {
+                throw new RuntimeException("Failed to obtain proxy to Sender.");
             }
 
             controller = new VotationController(sitePrx);

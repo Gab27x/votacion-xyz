@@ -21,7 +21,7 @@ subprojects {
     slice {
         java {
             // Rutas absolutas desde la raíz del proyecto
-            if (project.name in ['votingSite', 'server', 'reliableServer']) {
+            if (project.name in ['votingTable', 'server', 'reliableServer']) {
                 files = [
                     file("${rootProject.projectDir}/Voting.ice"),
                     file("${rootProject.projectDir}/ReliableMessage.ice")
@@ -31,6 +31,15 @@ subprojects {
             }
         }
     }
+    sourceSets {
+        main {
+            java {
+                // Incluye el código fuente generado desde los archivos .ice
+                srcDirs += file("$buildDir/generated-src/slice/java")
+            }
+        }
+    }
+
 
 
     //
@@ -45,6 +54,9 @@ subprojects {
     //
     dependencies {
         implementation 'com.zeroc:ice:3.7.10'
+        if (project.name == 'votingTable' || project.name == 'server') {
+            implementation project(':reliableServer')
+        }
     }
 
     //
