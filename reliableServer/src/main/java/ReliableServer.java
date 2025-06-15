@@ -28,7 +28,7 @@ public class ReliableServer {
 
         // Configurar el proxy del servidor de destino
         RMDestinationPrx dest = RMDestinationPrx
-                .uncheckedCast(communicator.stringToProxy("Service:tcp -h localhost -p 10012"));
+             .uncheckedCast(communicator.stringToProxy("Receiver:tcp -h localhost -p 10011"));
         sender.setServerProxy(dest, null);
 
         adapter.activate();
