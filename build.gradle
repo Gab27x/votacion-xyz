@@ -149,3 +149,41 @@ project(':queryDevice') {
 
     sourceSets.main.java.srcDirs += file("$buildDir/generated-src/slice/java")
 }
+
+project(':queryProxy') {
+    apply plugin: 'com.zeroc.gradle.ice-builder.slice'
+
+    dependencies {
+        implementation 'com.zeroc:ice:3.7.10'
+    }
+
+    slice {
+        java {
+            files = [
+                file("${rootProject.projectDir}/Query.ice"),
+            ]
+        }
+    }
+
+    sourceSets.main.java.srcDirs += file("$buildDir/generated-src/slice/java")
+}
+
+project(':queryServer') {
+    apply plugin: 'com.zeroc.gradle.ice-builder.slice'
+
+    dependencies {
+        implementation 'com.zeroc:ice:3.7.10'
+    }
+
+    slice {
+        java {
+            files = [
+                file("${rootProject.projectDir}/Query.ice"),
+            ]
+        }
+    }
+
+    sourceSets.main.java.srcDirs += file("$buildDir/generated-src/slice/java")
+}
+
+
