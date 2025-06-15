@@ -155,6 +155,7 @@ project(':queryProxy') {
 
     dependencies {
         implementation 'com.zeroc:ice:3.7.10'
+        implementation project(':broker')
     }
 
     slice {
@@ -191,12 +192,13 @@ project(':broker') {
 
     dependencies {
         implementation 'com.zeroc:ice:3.7.10'
+        
     }
 
     slice {
         java {
             files = [
-                file("${rootProject.projectDir}/Broker.ice"),
+                file("${rootProject.projectDir}/BrokerIce.ice"),
             ]
         }
     }

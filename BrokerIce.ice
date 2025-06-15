@@ -1,6 +1,6 @@
-module Broker{
+module BrokerIce{
 
-    interface brokerImp{
+    interface BrokerImp{
         
         void addServer(string server);
         string getServer();
