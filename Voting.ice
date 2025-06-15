@@ -5,7 +5,7 @@ module Demo{
     }
 
     interface VotingTable{
-        void vote(string document, int candidateId);
+        int vote(string document, int candidateId);
     }
 
 

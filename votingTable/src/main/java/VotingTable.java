@@ -12,9 +12,10 @@ public class VotingTable implements Demo.VotingTable {
     private static VotationController controller;
 
     @Override
-    public void vote(String document, int candidateId, Current current) {
+    public int vote(String document, int candidateId, Current current) {
         TableVote newVote = new TableVote(document, candidateId);
         controller.sendVote(newVote);
+        return 0;
     }
 
     public static void main(String[] args) {

@@ -10,5 +10,6 @@
 rootProject.name = 'votacion-xyz'
 include('votingTable')
 include('reliableServer')
+include('proxySync')
 include('server')
 include('loadTester')

@@ -17,7 +17,7 @@ package Demo;
 
 public interface VotingTable extends com.zeroc.Ice.Object
 {
-    void vote(String document, int candidateId, com.zeroc.Ice.Current current);
+    int vote(String document, int candidateId, com.zeroc.Ice.Current current);
 
     /** @hidden */
     static final String[] _iceIds =
@@ -59,8 +59,11 @@ public interface VotingTable extends com.zeroc.Ice.Object
         iceP_document = istr.readString();
         iceP_candidateId = istr.readInt();
         inS.endReadParams();
-        obj.vote(iceP_document, iceP_candidateId, current);
-        return inS.setResult(inS.writeEmptyParams());
+        int ret = obj.vote(iceP_document, iceP_candidateId, current);
+        com.zeroc.Ice.OutputStream ostr = inS.startWriteParams();
+        ostr.writeInt(ret);
+        inS.endWriteParams(ostr);
+        return inS.setResult(ostr);
     }
 
     /** @hidden */
