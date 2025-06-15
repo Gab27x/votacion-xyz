@@ -10,6 +10,7 @@ public class QueryProxy implements Query.QueryProxyI {
 
 	@Override
 	public String getVotingTableById(String id, Current current) {
+		System.out.println("request from" + id);
 		return "llego";
 
 	}
