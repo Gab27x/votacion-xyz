@@ -5,13 +5,17 @@ import com.zeroc.Ice.ObjectPrx;
 import com.zeroc.Ice.Util;
 
 import BrokerIce.BrokerImpPrx;
+import Query.QueryServerIPrx;
 
 public class QueryProxy implements Query.QueryProxyI {
+
+	private static QueryServerIPrx queryServerIPrx;
 
 	@Override
 	public String getVotingTableById(String id, Current current) {
 		System.out.println("request from" + id);
-		return "llego";
+
+		return queryServerIPrx.getVotingTableById(id);
 
 	}
 
@@ -28,8 +32,7 @@ public class QueryProxy implements Query.QueryProxyI {
 			System.out.println("Mi proxy como string: " + proxyString);
 
 			BrokerImpPrx brokerImpPrx = BrokerImpPrx.checkedCast(
-				communicator.stringToProxy(communicator.getProperties().getProperty("Broker.Proxy"))
-			);
+					communicator.stringToProxy(communicator.getProperties().getProperty("Broker.Proxy")));
 
 			if (brokerImpPrx == null) {
 				throw new RuntimeException("El proxy del broker no implementa la interfaz esperada.");
@@ -40,6 +43,11 @@ public class QueryProxy implements Query.QueryProxyI {
 
 			System.out.println("Proxy registrado en el broker con éxito.");
 
+			queryServerIPrx = QueryServerIPrx
+					.checkedCast(communicator.stringToProxy(communicator.getProperties().getProperty("QueryServer.Proxy")));
+
+			if (queryServerIPrx == null)
+				throw new RuntimeException("fail query serverprx");
 			// Esperar señal de apagado si quieres mantenerlo activo
 			communicator.waitForShutdown();
 
