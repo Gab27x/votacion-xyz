@@ -13,3 +13,8 @@ include('reliableServer')
 include('proxySync')
 include('server')
 include('loadTester')
+include('queryDevice')
+include('queryProxy')
+include('queryServer')
+include('broker')
+

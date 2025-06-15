@@ -14,7 +14,6 @@ public class LoadTester {
 		File csvFile = new File("loadtest.csv");
 
 		try {
-			// Create the CSV file if it doesn't exist
 			if (!csvFile.exists()) {
 				boolean created = csvFile.createNewFile();
 				if (!created) {
@@ -22,7 +21,6 @@ public class LoadTester {
 				}
 			}
 
-			// Open the CSV file for writing (false = overwrite mode)
 			try (Communicator communicator = Util.initialize(args, "LoadTester.cfg");
 					BufferedWriter writer = new BufferedWriter(new FileWriter(csvFile, false))) {
 
@@ -33,13 +31,7 @@ public class LoadTester {
 					throw new RuntimeException("Failed to obtain proxy to VotingTable.");
 				}
 
-				System.out.println("Starting load test...");
-
 				int totalVotes = 1000;
-
-				// Write CSV header
-				writer.write("candidateId,result");
-				writer.newLine();
 
 				for (int i = 0; i < totalVotes; i++) {
 					String document = "doc-" + i;
@@ -49,17 +41,10 @@ public class LoadTester {
 						int result = tablePrx.vote(document, candidateId);
 						writer.write(candidateId + "," + result);
 						writer.newLine();
-						System.out.println("VOTE SENT: " + document + " -> candidate " + candidateId);
 					} catch (Exception e) {
-						writer.write(candidateId + ",ERROR");
-						writer.newLine();
-						System.err.println("FAILED TO SEND: " + document + " -> candidate " + candidateId);
-						e.printStackTrace();
+						// Voto fallido, no escribir nada
 					}
 				}
-
-				System.out.println("Load test completed. CSV saved to 'loadtest.csv'.");
-
 			}
 
 		} catch (IOException e) {

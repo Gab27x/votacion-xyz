@@ -8,7 +8,7 @@ plugins {
     id 'com.zeroc.gradle.ice-builder.slice' version '1.4.7' apply false
 }
 
-def iceUsingProjects = ['votingTable', 'server', 'reliableServer', 'proxySync']
+def iceUsingProjects = ['votingTable', 'server', 'reliableServer', 'proxySync', 'queryDevice']
 def dependsOnReliable = ['votingTable', 'server', 'proxySync']
 
 subprojects {
@@ -131,3 +131,80 @@ project(':loadTester') {
 
     sourceSets.main.java.srcDirs += file("$buildDir/generated-src/slice/java")
 }
+
+project(':queryDevice') {
+    apply plugin: 'com.zeroc.gradle.ice-builder.slice'
+
+    dependencies {
+        implementation 'com.zeroc:ice:3.7.10'
+        implementation project(':broker')
+
+    }
+
+    slice {
+        java {
+            files = [
+                file("${rootProject.projectDir}/Query.ice"),
+            ]
+        }
+    }
+
+    sourceSets.main.java.srcDirs += file("$buildDir/generated-src/slice/java")
+}
+
+project(':queryProxy') {
+    apply plugin: 'com.zeroc.gradle.ice-builder.slice'
+
+    dependencies {
+        implementation 'com.zeroc:ice:3.7.10'
+        implementation project(':broker')
+    }
+
+    slice {
+        java {
+            files = [
+                file("${rootProject.projectDir}/Query.ice"),
+            ]
+        }
+    }
+
+    sourceSets.main.java.srcDirs += file("$buildDir/generated-src/slice/java")
+}
+
+project(':queryServer') {
+    apply plugin: 'com.zeroc.gradle.ice-builder.slice'
+
+    dependencies {
+        implementation 'com.zeroc:ice:3.7.10'
+    }
+
+    slice {
+        java {
+            files = [
+                file("${rootProject.projectDir}/Query.ice"),
+            ]
+        }
+    }
+
+    sourceSets.main.java.srcDirs += file("$buildDir/generated-src/slice/java")
+}
+
+project(':broker') {
+    apply plugin: 'com.zeroc.gradle.ice-builder.slice'
+
+    dependencies {
+        implementation 'com.zeroc:ice:3.7.10'
+        
+    }
+
+    slice {
+        java {
+            files = [
+                file("${rootProject.projectDir}/BrokerIce.ice"),
+            ]
+        }
+    }
+
+    sourceSets.main.java.srcDirs += file("$buildDir/generated-src/slice/java")
+}
+
