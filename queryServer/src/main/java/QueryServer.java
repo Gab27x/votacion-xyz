@@ -7,6 +7,7 @@ public class QueryServer implements Query.QueryServerI {
 
 	@Override
 	public String getVotingTableById(String id, Current current) {
+		System.out.println("query from: " + id);
 		if (id.equalsIgnoreCase("1"))
 			return "vaya vote a icesi";
 		else
@@ -15,16 +16,14 @@ public class QueryServer implements Query.QueryServerI {
 
 	public static void main(String[] args) {
 
-		try (Communicator communicator = Util.initialize(args, "QueryServer.cfg")) {
-
-
+		String cfg = args.length > 0 ? args[0] : "QueryServer.cfg";
+		try (Communicator communicator = Util.initialize(args, cfg)) {
 			QueryServer server = new QueryServer();
 
 			ObjectAdapter adapter = communicator.createObjectAdapter("QueryServer");
 			adapter.add(server, Util.stringToIdentity("QueryServer"));
 			adapter.activate();
 			System.out.println("QueryServer up ...");
-
 
 			communicator.waitForShutdown();
 		}
