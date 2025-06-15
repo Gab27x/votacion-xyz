@@ -1,12 +1,12 @@
 module Query {
 
-    interface queryDevice {
+    interface QueryDeviceI {
         string query(string id);
     }
-    interface queryProxy {
+    interface QueryProxyI {
         string getVotingTableById(string id);
     }
-    interface queryServer {
+    interface QueryServerI {
         string getVotingTableById(string id);
     }
 

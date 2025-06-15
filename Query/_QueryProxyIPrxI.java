@@ -16,7 +16,7 @@
 package Query;
 
 /** @hidden */
-public class _queryDevicePrxI extends com.zeroc.Ice._ObjectPrxI implements queryDevicePrx
+public class _QueryProxyIPrxI extends com.zeroc.Ice._ObjectPrxI implements QueryProxyIPrx
 {
     /** @hidden */
     public static final long serialVersionUID = 0L;

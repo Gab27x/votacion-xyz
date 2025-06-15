@@ -6,7 +6,7 @@ import com.zeroc.Ice.Util;
 
 import BrokerIce.BrokerImpPrx;
 
-public class QueryProxy implements Query.queryProxy {
+public class QueryProxy implements Query.QueryProxyI {
 
 	@Override
 	public String getVotingTableById(String id, Current current) {

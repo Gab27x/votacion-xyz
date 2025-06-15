@@ -15,7 +15,7 @@
 
 package Query;
 
-public interface queryServer extends com.zeroc.Ice.Object
+public interface QueryProxyI extends com.zeroc.Ice.Object
 {
     String getVotingTableById(String id, com.zeroc.Ice.Current current);
 
@@ -23,7 +23,7 @@ public interface queryServer extends com.zeroc.Ice.Object
     static final String[] _iceIds =
     {
         "::Ice::Object",
-        "::Query::queryServer"
+        "::Query::QueryProxyI"
     };
 
     @Override
@@ -40,7 +40,7 @@ public interface queryServer extends com.zeroc.Ice.Object
 
     static String ice_staticId()
     {
-        return "::Query::queryServer";
+        return "::Query::QueryProxyI";
     }
 
     /**
@@ -50,7 +50,7 @@ public interface queryServer extends com.zeroc.Ice.Object
      * @param current -
      * @return -
     **/
-    static java.util.concurrent.CompletionStage<com.zeroc.Ice.OutputStream> _iceD_getVotingTableById(queryServer obj, final com.zeroc.IceInternal.Incoming inS, com.zeroc.Ice.Current current)
+    static java.util.concurrent.CompletionStage<com.zeroc.Ice.OutputStream> _iceD_getVotingTableById(QueryProxyI obj, final com.zeroc.IceInternal.Incoming inS, com.zeroc.Ice.Current current)
     {
         com.zeroc.Ice.Object._iceCheckMode(null, current.mode);
         com.zeroc.Ice.InputStream istr = inS.startReadParams();

@@ -137,6 +137,8 @@ project(':queryDevice') {
 
     dependencies {
         implementation 'com.zeroc:ice:3.7.10'
+        implementation project(':broker')
+
     }
 
     slice {

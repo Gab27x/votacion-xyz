@@ -15,15 +15,15 @@
 
 package Query;
 
-public interface queryDevice extends com.zeroc.Ice.Object
+public interface QueryServerI extends com.zeroc.Ice.Object
 {
-    String query(String id, com.zeroc.Ice.Current current);
+    String getVotingTableById(String id, com.zeroc.Ice.Current current);
 
     /** @hidden */
     static final String[] _iceIds =
     {
         "::Ice::Object",
-        "::Query::queryDevice"
+        "::Query::QueryServerI"
     };
 
     @Override
@@ -40,7 +40,7 @@ public interface queryDevice extends com.zeroc.Ice.Object
 
     static String ice_staticId()
     {
-        return "::Query::queryDevice";
+        return "::Query::QueryServerI";
     }
 
     /**
@@ -50,14 +50,14 @@ public interface queryDevice extends com.zeroc.Ice.Object
      * @param current -
      * @return -
     **/
-    static java.util.concurrent.CompletionStage<com.zeroc.Ice.OutputStream> _iceD_query(queryDevice obj, final com.zeroc.IceInternal.Incoming inS, com.zeroc.Ice.Current current)
+    static java.util.concurrent.CompletionStage<com.zeroc.Ice.OutputStream> _iceD_getVotingTableById(QueryServerI obj, final com.zeroc.IceInternal.Incoming inS, com.zeroc.Ice.Current current)
     {
         com.zeroc.Ice.Object._iceCheckMode(null, current.mode);
         com.zeroc.Ice.InputStream istr = inS.startReadParams();
         String iceP_id;
         iceP_id = istr.readString();
         inS.endReadParams();
-        String ret = obj.query(iceP_id, current);
+        String ret = obj.getVotingTableById(iceP_id, current);
         com.zeroc.Ice.OutputStream ostr = inS.startWriteParams();
         ostr.writeString(ret);
         inS.endWriteParams(ostr);
@@ -67,11 +67,11 @@ public interface queryDevice extends com.zeroc.Ice.Object
     /** @hidden */
     final static String[] _iceOps =
     {
+        "getVotingTableById",
         "ice_id",
         "ice_ids",
         "ice_isA",
-        "ice_ping",
-        "query"
+        "ice_ping"
     };
 
     /** @hidden */
@@ -89,23 +89,23 @@ public interface queryDevice extends com.zeroc.Ice.Object
         {
             case 0:
             {
-                return com.zeroc.Ice.Object._iceD_ice_id(this, in, current);
+                return _iceD_getVotingTableById(this, in, current);
             }
             case 1:
             {
-                return com.zeroc.Ice.Object._iceD_ice_ids(this, in, current);
+                return com.zeroc.Ice.Object._iceD_ice_id(this, in, current);
             }
             case 2:
             {
-                return com.zeroc.Ice.Object._iceD_ice_isA(this, in, current);
+                return com.zeroc.Ice.Object._iceD_ice_ids(this, in, current);
             }
             case 3:
             {
-                return com.zeroc.Ice.Object._iceD_ice_ping(this, in, current);
+                return com.zeroc.Ice.Object._iceD_ice_isA(this, in, current);
             }
             case 4:
             {
-                return _iceD_query(this, in, current);
+                return com.zeroc.Ice.Object._iceD_ice_ping(this, in, current);
             }
         }
 

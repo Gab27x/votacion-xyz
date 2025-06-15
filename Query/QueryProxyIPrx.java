@@ -15,7 +15,7 @@
 
 package Query;
 
-public interface queryServerPrx extends com.zeroc.Ice.ObjectPrx
+public interface QueryProxyIPrx extends com.zeroc.Ice.ObjectPrx
 {
     default String getVotingTableById(String id)
     {
@@ -63,9 +63,9 @@ public interface queryServerPrx extends com.zeroc.Ice.ObjectPrx
      * @param obj The untyped proxy.
      * @return A proxy for this type, or null if the object does not support this type.
      **/
-    static queryServerPrx checkedCast(com.zeroc.Ice.ObjectPrx obj)
+    static QueryProxyIPrx checkedCast(com.zeroc.Ice.ObjectPrx obj)
     {
-        return com.zeroc.Ice.ObjectPrx._checkedCast(obj, ice_staticId(), queryServerPrx.class, _queryServerPrxI.class);
+        return com.zeroc.Ice.ObjectPrx._checkedCast(obj, ice_staticId(), QueryProxyIPrx.class, _QueryProxyIPrxI.class);
     }
 
     /**
@@ -75,9 +75,9 @@ public interface queryServerPrx extends com.zeroc.Ice.ObjectPrx
      * @param context The Context map to send with the invocation.
      * @return A proxy for this type, or null if the object does not support this type.
      **/
-    static queryServerPrx checkedCast(com.zeroc.Ice.ObjectPrx obj, java.util.Map<String, String> context)
+    static QueryProxyIPrx checkedCast(com.zeroc.Ice.ObjectPrx obj, java.util.Map<String, String> context)
     {
-        return com.zeroc.Ice.ObjectPrx._checkedCast(obj, context, ice_staticId(), queryServerPrx.class, _queryServerPrxI.class);
+        return com.zeroc.Ice.ObjectPrx._checkedCast(obj, context, ice_staticId(), QueryProxyIPrx.class, _QueryProxyIPrxI.class);
     }
 
     /**
@@ -87,9 +87,9 @@ public interface queryServerPrx extends com.zeroc.Ice.ObjectPrx
      * @param facet The name of the desired facet.
      * @return A proxy for this type, or null if the object does not support this type.
      **/
-    static queryServerPrx checkedCast(com.zeroc.Ice.ObjectPrx obj, String facet)
+    static QueryProxyIPrx checkedCast(com.zeroc.Ice.ObjectPrx obj, String facet)
     {
-        return com.zeroc.Ice.ObjectPrx._checkedCast(obj, facet, ice_staticId(), queryServerPrx.class, _queryServerPrxI.class);
+        return com.zeroc.Ice.ObjectPrx._checkedCast(obj, facet, ice_staticId(), QueryProxyIPrx.class, _QueryProxyIPrxI.class);
     }
 
     /**
@@ -100,9 +100,9 @@ public interface queryServerPrx extends com.zeroc.Ice.ObjectPrx
      * @param context The Context map to send with the invocation.
      * @return A proxy for this type, or null if the object does not support this type.
      **/
-    static queryServerPrx checkedCast(com.zeroc.Ice.ObjectPrx obj, String facet, java.util.Map<String, String> context)
+    static QueryProxyIPrx checkedCast(com.zeroc.Ice.ObjectPrx obj, String facet, java.util.Map<String, String> context)
     {
-        return com.zeroc.Ice.ObjectPrx._checkedCast(obj, facet, context, ice_staticId(), queryServerPrx.class, _queryServerPrxI.class);
+        return com.zeroc.Ice.ObjectPrx._checkedCast(obj, facet, context, ice_staticId(), QueryProxyIPrx.class, _QueryProxyIPrxI.class);
     }
 
     /**
@@ -110,9 +110,9 @@ public interface queryServerPrx extends com.zeroc.Ice.ObjectPrx
      * @param obj The untyped proxy.
      * @return A proxy for this type.
      **/
-    static queryServerPrx uncheckedCast(com.zeroc.Ice.ObjectPrx obj)
+    static QueryProxyIPrx uncheckedCast(com.zeroc.Ice.ObjectPrx obj)
     {
-        return com.zeroc.Ice.ObjectPrx._uncheckedCast(obj, queryServerPrx.class, _queryServerPrxI.class);
+        return com.zeroc.Ice.ObjectPrx._uncheckedCast(obj, QueryProxyIPrx.class, _QueryProxyIPrxI.class);
     }
 
     /**
@@ -121,9 +121,9 @@ public interface queryServerPrx extends com.zeroc.Ice.ObjectPrx
      * @param facet The name of the desired facet.
      * @return A proxy for this type.
      **/
-    static queryServerPrx uncheckedCast(com.zeroc.Ice.ObjectPrx obj, String facet)
+    static QueryProxyIPrx uncheckedCast(com.zeroc.Ice.ObjectPrx obj, String facet)
     {
-        return com.zeroc.Ice.ObjectPrx._uncheckedCast(obj, facet, queryServerPrx.class, _queryServerPrxI.class);
+        return com.zeroc.Ice.ObjectPrx._uncheckedCast(obj, facet, QueryProxyIPrx.class, _QueryProxyIPrxI.class);
     }
 
     /**
@@ -132,9 +132,9 @@ public interface queryServerPrx extends com.zeroc.Ice.ObjectPrx
      * @return A proxy with the specified per-proxy context.
      **/
     @Override
-    default queryServerPrx ice_context(java.util.Map<String, String> newContext)
+    default QueryProxyIPrx ice_context(java.util.Map<String, String> newContext)
     {
-        return (queryServerPrx)_ice_context(newContext);
+        return (QueryProxyIPrx)_ice_context(newContext);
     }
 
     /**
@@ -143,9 +143,9 @@ public interface queryServerPrx extends com.zeroc.Ice.ObjectPrx
      * @return A proxy with the specified adapter ID.
      **/
     @Override
-    default queryServerPrx ice_adapterId(String newAdapterId)
+    default QueryProxyIPrx ice_adapterId(String newAdapterId)
     {
-        return (queryServerPrx)_ice_adapterId(newAdapterId);
+        return (QueryProxyIPrx)_ice_adapterId(newAdapterId);
     }
 
     /**
@@ -154,9 +154,9 @@ public interface queryServerPrx extends com.zeroc.Ice.ObjectPrx
      * @return A proxy with the specified endpoints.
      **/
     @Override
-    default queryServerPrx ice_endpoints(com.zeroc.Ice.Endpoint[] newEndpoints)
+    default QueryProxyIPrx ice_endpoints(com.zeroc.Ice.Endpoint[] newEndpoints)
     {
-        return (queryServerPrx)_ice_endpoints(newEndpoints);
+        return (QueryProxyIPrx)_ice_endpoints(newEndpoints);
     }
 
     /**
@@ -165,9 +165,9 @@ public interface queryServerPrx extends com.zeroc.Ice.ObjectPrx
      * @return A proxy with the specified locator cache timeout.
      **/
     @Override
-    default queryServerPrx ice_locatorCacheTimeout(int newTimeout)
+    default QueryProxyIPrx ice_locatorCacheTimeout(int newTimeout)
     {
-        return (queryServerPrx)_ice_locatorCacheTimeout(newTimeout);
+        return (QueryProxyIPrx)_ice_locatorCacheTimeout(newTimeout);
     }
 
     /**
@@ -176,9 +176,9 @@ public interface queryServerPrx extends com.zeroc.Ice.ObjectPrx
      * @return A proxy with the specified invocation timeout.
      **/
     @Override
-    default queryServerPrx ice_invocationTimeout(int newTimeout)
+    default QueryProxyIPrx ice_invocationTimeout(int newTimeout)
     {
-        return (queryServerPrx)_ice_invocationTimeout(newTimeout);
+        return (QueryProxyIPrx)_ice_invocationTimeout(newTimeout);
     }
 
     /**
@@ -187,9 +187,9 @@ public interface queryServerPrx extends com.zeroc.Ice.ObjectPrx
      * @return A proxy with the specified caching policy.
      **/
     @Override
-    default queryServerPrx ice_connectionCached(boolean newCache)
+    default QueryProxyIPrx ice_connectionCached(boolean newCache)
     {
-        return (queryServerPrx)_ice_connectionCached(newCache);
+        return (QueryProxyIPrx)_ice_connectionCached(newCache);
     }
 
     /**
@@ -198,9 +198,9 @@ public interface queryServerPrx extends com.zeroc.Ice.ObjectPrx
      * @return A proxy with the specified endpoint selection policy.
      **/
     @Override
-    default queryServerPrx ice_endpointSelection(com.zeroc.Ice.EndpointSelectionType newType)
+    default QueryProxyIPrx ice_endpointSelection(com.zeroc.Ice.EndpointSelectionType newType)
     {
-        return (queryServerPrx)_ice_endpointSelection(newType);
+        return (QueryProxyIPrx)_ice_endpointSelection(newType);
     }
 
     /**
@@ -211,9 +211,9 @@ public interface queryServerPrx extends com.zeroc.Ice.ObjectPrx
      * @return A proxy with the specified selection policy.
      **/
     @Override
-    default queryServerPrx ice_secure(boolean b)
+    default QueryProxyIPrx ice_secure(boolean b)
     {
-        return (queryServerPrx)_ice_secure(b);
+        return (QueryProxyIPrx)_ice_secure(b);
     }
 
     /**
@@ -222,9 +222,9 @@ public interface queryServerPrx extends com.zeroc.Ice.ObjectPrx
      * @return A proxy with the specified encoding version.
      **/
     @Override
-    default queryServerPrx ice_encodingVersion(com.zeroc.Ice.EncodingVersion e)
+    default QueryProxyIPrx ice_encodingVersion(com.zeroc.Ice.EncodingVersion e)
     {
-        return (queryServerPrx)_ice_encodingVersion(e);
+        return (QueryProxyIPrx)_ice_encodingVersion(e);
     }
 
     /**
@@ -235,9 +235,9 @@ public interface queryServerPrx extends com.zeroc.Ice.ObjectPrx
      * @return A proxy with the specified selection policy.
      **/
     @Override
-    default queryServerPrx ice_preferSecure(boolean b)
+    default QueryProxyIPrx ice_preferSecure(boolean b)
     {
-        return (queryServerPrx)_ice_preferSecure(b);
+        return (QueryProxyIPrx)_ice_preferSecure(b);
     }
 
     /**
@@ -246,9 +246,9 @@ public interface queryServerPrx extends com.zeroc.Ice.ObjectPrx
      * @return A proxy with the specified router.
      **/
     @Override
-    default queryServerPrx ice_router(com.zeroc.Ice.RouterPrx router)
+    default QueryProxyIPrx ice_router(com.zeroc.Ice.RouterPrx router)
     {
-        return (queryServerPrx)_ice_router(router);
+        return (QueryProxyIPrx)_ice_router(router);
     }
 
     /**
@@ -257,9 +257,9 @@ public interface queryServerPrx extends com.zeroc.Ice.ObjectPrx
      * @return A proxy with the specified locator.
      **/
     @Override
-    default queryServerPrx ice_locator(com.zeroc.Ice.LocatorPrx locator)
+    default QueryProxyIPrx ice_locator(com.zeroc.Ice.LocatorPrx locator)
     {
-        return (queryServerPrx)_ice_locator(locator);
+        return (QueryProxyIPrx)_ice_locator(locator);
     }
 
     /**
@@ -268,9 +268,9 @@ public interface queryServerPrx extends com.zeroc.Ice.ObjectPrx
      * @return A proxy with the specified collocation optimization.
      **/
     @Override
-    default queryServerPrx ice_collocationOptimized(boolean b)
+    default QueryProxyIPrx ice_collocationOptimized(boolean b)
     {
-        return (queryServerPrx)_ice_collocationOptimized(b);
+        return (QueryProxyIPrx)_ice_collocationOptimized(b);
     }
 
     /**
@@ -278,9 +278,9 @@ public interface queryServerPrx extends com.zeroc.Ice.ObjectPrx
      * @return A proxy that uses twoway invocations.
      **/
     @Override
-    default queryServerPrx ice_twoway()
+    default QueryProxyIPrx ice_twoway()
     {
-        return (queryServerPrx)_ice_twoway();
+        return (QueryProxyIPrx)_ice_twoway();
     }
 
     /**
@@ -288,9 +288,9 @@ public interface queryServerPrx extends com.zeroc.Ice.ObjectPrx
      * @return A proxy that uses oneway invocations.
      **/
     @Override
-    default queryServerPrx ice_oneway()
+    default QueryProxyIPrx ice_oneway()
     {
-        return (queryServerPrx)_ice_oneway();
+        return (QueryProxyIPrx)_ice_oneway();
     }
 
     /**
@@ -298,9 +298,9 @@ public interface queryServerPrx extends com.zeroc.Ice.ObjectPrx
      * @return A proxy that uses batch oneway invocations.
      **/
     @Override
-    default queryServerPrx ice_batchOneway()
+    default QueryProxyIPrx ice_batchOneway()
     {
-        return (queryServerPrx)_ice_batchOneway();
+        return (QueryProxyIPrx)_ice_batchOneway();
     }
 
     /**
@@ -308,9 +308,9 @@ public interface queryServerPrx extends com.zeroc.Ice.ObjectPrx
      * @return A proxy that uses datagram invocations.
      **/
     @Override
-    default queryServerPrx ice_datagram()
+    default QueryProxyIPrx ice_datagram()
     {
-        return (queryServerPrx)_ice_datagram();
+        return (QueryProxyIPrx)_ice_datagram();
     }
 
     /**
@@ -318,9 +318,9 @@ public interface queryServerPrx extends com.zeroc.Ice.ObjectPrx
      * @return A proxy that uses batch datagram invocations.
      **/
     @Override
-    default queryServerPrx ice_batchDatagram()
+    default QueryProxyIPrx ice_batchDatagram()
     {
-        return (queryServerPrx)_ice_batchDatagram();
+        return (QueryProxyIPrx)_ice_batchDatagram();
     }
 
     /**
@@ -329,9 +329,9 @@ public interface queryServerPrx extends com.zeroc.Ice.ObjectPrx
      * @return A proxy with the specified compression setting.
      **/
     @Override
-    default queryServerPrx ice_compress(boolean co)
+    default QueryProxyIPrx ice_compress(boolean co)
     {
-        return (queryServerPrx)_ice_compress(co);
+        return (QueryProxyIPrx)_ice_compress(co);
     }
 
     /**
@@ -340,9 +340,9 @@ public interface queryServerPrx extends com.zeroc.Ice.ObjectPrx
      * @return A proxy with the specified timeout.
      **/
     @Override
-    default queryServerPrx ice_timeout(int t)
+    default QueryProxyIPrx ice_timeout(int t)
     {
-        return (queryServerPrx)_ice_timeout(t);
+        return (QueryProxyIPrx)_ice_timeout(t);
     }
 
     /**
@@ -351,9 +351,9 @@ public interface queryServerPrx extends com.zeroc.Ice.ObjectPrx
      * @return A proxy with the specified connection ID.
      **/
     @Override
-    default queryServerPrx ice_connectionId(String connectionId)
+    default QueryProxyIPrx ice_connectionId(String connectionId)
     {
-        return (queryServerPrx)_ice_connectionId(connectionId);
+        return (QueryProxyIPrx)_ice_connectionId(connectionId);
     }
 
     /**
@@ -362,13 +362,13 @@ public interface queryServerPrx extends com.zeroc.Ice.ObjectPrx
      * @return A fixed proxy bound to the given connection.
      **/
     @Override
-    default queryServerPrx ice_fixed(com.zeroc.Ice.Connection connection)
+    default QueryProxyIPrx ice_fixed(com.zeroc.Ice.Connection connection)
     {
-        return (queryServerPrx)_ice_fixed(connection);
+        return (QueryProxyIPrx)_ice_fixed(connection);
     }
 
     static String ice_staticId()
     {
-        return "::Query::queryServer";
+        return "::Query::QueryProxyI";
     }
 }

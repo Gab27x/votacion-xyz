@@ -2,8 +2,10 @@ import com.zeroc.Ice.Communicator;
 import com.zeroc.Ice.Current;
 import com.zeroc.Ice.ObjectAdapter;
 import com.zeroc.Ice.Util;
+import Query.QueryProxyIPrx;
 
-public class QueryDevice implements Query.queryDevice {
+
+public class QueryDevice implements Query.QueryDeviceI {
 
 	public static QueryDeviceController queryDeviceController;
 
