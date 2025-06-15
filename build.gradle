@@ -8,7 +8,7 @@ plugins {
     id 'com.zeroc.gradle.ice-builder.slice' version '1.4.7' apply false
 }
 
-def iceUsingProjects = ['votingTable', 'server', 'reliableServer', 'proxySync']
+def iceUsingProjects = ['votingTable', 'server', 'reliableServer', 'proxySync', 'queryDevice']
 def dependsOnReliable = ['votingTable', 'server', 'proxySync']
 
 subprojects {
@@ -125,6 +125,24 @@ project(':loadTester') {
         java {
             files = [
                 file("${rootProject.projectDir}/Voting.ice"),
+            ]
+        }
+    }
+
+    sourceSets.main.java.srcDirs += file("$buildDir/generated-src/slice/java")
+}
+
+project(':queryDevice') {
+    apply plugin: 'com.zeroc.gradle.ice-builder.slice'
+
+    dependencies {
+        implementation 'com.zeroc:ice:3.7.10'
+    }
+
+    slice {
+        java {
+            files = [
+                file("${rootProject.projectDir}/Query.ice"),
             ]
         }
     }
