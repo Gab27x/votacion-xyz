@@ -16,4 +16,5 @@ include('loadTester')
 include('queryDevice')
 include('queryProxy')
 include('queryServer')
+include('broker')
 

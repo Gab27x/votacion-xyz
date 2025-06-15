@@ -186,4 +186,21 @@ project(':queryServer') {
     sourceSets.main.java.srcDirs += file("$buildDir/generated-src/slice/java")
 }
 
+project(':broker') {
+    apply plugin: 'com.zeroc.gradle.ice-builder.slice'
+
+    dependencies {
+        implementation 'com.zeroc:ice:3.7.10'
+    }
+
+    slice {
+        java {
+            files = [
+                file("${rootProject.projectDir}/Broker.ice"),
+            ]
+        }
+    }
+
+    sourceSets.main.java.srcDirs += file("$buildDir/generated-src/slice/java")
+}
 

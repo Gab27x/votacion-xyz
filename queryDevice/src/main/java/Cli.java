@@ -22,7 +22,7 @@ public class Cli {
 			if (id.equalsIgnoreCase("exit"))
 				break;
 
-				
+			queryDeviceController.query(id);
 		}
 		scanner.close();
 	}
