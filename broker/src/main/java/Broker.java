@@ -1,49 +1,53 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import com.zeroc.Ice.Communicator;
 import com.zeroc.Ice.Current;
 import com.zeroc.Ice.ObjectAdapter;
 import com.zeroc.Ice.Util;
 
-import BrokerIce.BrokerImp;
-
 public class Broker implements BrokerIce.BrokerImp {
 
-	private final List<String> servers = new ArrayList<>();
+    private final List<String> servers = Collections.synchronizedList(new ArrayList<>());
+    private final AtomicInteger index = new AtomicInteger(0);
 
-	@Override
-	public synchronized void addServer(String server, Current current) {
-		System.out.println(server);
-		if (server != null && !server.isEmpty()) {
-			servers.add(server);
-			System.out.println("Server added: " + server);
-		}
-	}
+    @Override
+    public void addServer(String server, Current current) {
+        if (server != null && !server.isEmpty()) {
+            servers.add(server);
+            System.out.println("Server added: " + server);
+        }
+    }
 
-	@Override
-	public synchronized String getServer(Current current) {
-		if (servers.isEmpty()) {
-			return "NaN";
-		}
-		return servers.get(0);
-	}
+    @Override
+    public String getServer(Current current) {
+        synchronized (servers) {
+            if (servers.isEmpty()) {
+                return "NaN";
+            }
 
-	public static void main(String[] args) {
-		try (Communicator communicator = Util.initialize(args, "Broker.cfg")) {
+            int i = index.getAndUpdate(n -> (n + 1) % servers.size());
+            return servers.get(i);
+        }
+    }
 
-			Broker broker = new Broker();
-			ObjectAdapter adapter = communicator.createObjectAdapter("Broker");
-			adapter.add(broker, Util.stringToIdentity("Broker"));
-			adapter.activate();
+    public static void main(String[] args) {
+        try (Communicator communicator = Util.initialize(args, "Broker.cfg")) {
 
-			System.out.println("Broker up and running");
+            Broker broker = new Broker();
+            ObjectAdapter adapter = communicator.createObjectAdapter("Broker");
+            adapter.add(broker, Util.stringToIdentity("Broker"));
+            adapter.activate();
 
-			communicator.waitForShutdown();
+            System.out.println("Broker up and running");
 
-		} catch (Exception e) {
-			System.err.println("Broker failed: " + e.getMessage());
-			e.printStackTrace();
-		}
-	}
+            communicator.waitForShutdown();
+
+        } catch (Exception e) {
+            System.err.println("Broker failed: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
 }
