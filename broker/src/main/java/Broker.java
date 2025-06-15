@@ -34,7 +34,10 @@ public class Broker implements BrokerIce.BrokerImp {
     }
 
     public static void main(String[] args) {
-        try (Communicator communicator = Util.initialize(args, "Broker.cfg")) {
+
+        
+		String cfg = args.length > 0 ? args[0] : "Broker.cfg";
+		try (Communicator communicator = Util.initialize(args, cfg)) {
 
             Broker broker = new Broker();
             ObjectAdapter adapter = communicator.createObjectAdapter("Broker");

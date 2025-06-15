@@ -13,15 +13,15 @@ public class QueryProxy implements Query.QueryProxyI {
 
 	@Override
 	public String getVotingTableById(String id, Current current) {
-		System.out.println("request from" + id);
+		System.out.println("request from: " + id);
 
 		return queryServerIPrx.getVotingTableById(id);
 
 	}
 
 	public static void main(String[] args) {
-		try (Communicator communicator = Util.initialize(args, "QueryProxy.cfg")) {
-
+		String cfg = args.length > 0 ? args[0] : "QueryProxy.cfg";
+		try (Communicator communicator = Util.initialize(args, cfg)) {
 			QueryProxy queryProxy = new QueryProxy();
 			ObjectAdapter adapter = communicator.createObjectAdapter("QueryProxy");
 
@@ -44,7 +44,8 @@ public class QueryProxy implements Query.QueryProxyI {
 			System.out.println("Proxy registrado en el broker con éxito.");
 
 			queryServerIPrx = QueryServerIPrx
-					.checkedCast(communicator.stringToProxy(communicator.getProperties().getProperty("QueryServer.Proxy")));
+					.checkedCast(
+							communicator.stringToProxy(communicator.getProperties().getProperty("QueryServer.Proxy")));
 
 			if (queryServerIPrx == null)
 				throw new RuntimeException("fail query serverprx");
