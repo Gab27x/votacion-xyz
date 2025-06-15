@@ -11,6 +11,8 @@ public class VotationController implements Runnable {
     private Cli cli;
     private RMSourcePrx sitePrx; // Proxy a VotingSite remoto
 
+    
+
     public VotationController(RMSourcePrx sitePrx) {
         this.cli = new Cli(this);
         this.sitePrx = sitePrx;

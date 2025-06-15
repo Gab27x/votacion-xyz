@@ -8,66 +8,203 @@ plugins {
     id 'com.zeroc.gradle.ice-builder.slice' version '1.4.7' apply false
 }
 
+def iceUsingProjects = ['votingTable', 'server', 'reliableServer', 'proxySync', 'queryDevice']
+def dependsOnReliable = ['votingTable', 'server', 'proxySync']
+
 subprojects {
-    //
-    // Apply Java and Ice Builder plug-ins to all sub-projects
-    //
     apply plugin: 'java'
-    apply plugin: 'com.zeroc.gradle.ice-builder.slice'
 
-    //
-    // Both Client and Server projects share the Printer.ice Slice definitions
-    //
-    slice {
-        java {
-            // Rutas absolutas desde la raíz del proyecto
-            if (project.name in ['votingTable', 'server', 'reliableServer']) {
-                files = [
-                    file("${rootProject.projectDir}/Voting.ice"),
-                    file("${rootProject.projectDir}/ReliableMessage.ice")
-                ]
-            } else {
-                files = [file("${rootProject.projectDir}/Voting.ice")]
-            }
-        }
-    }
-    sourceSets {
-        main {
-            java {
-                // Incluye el código fuente generado desde los archivos .ice
-                srcDirs += file("$buildDir/generated-src/slice/java")
-            }
-        }
-    }
-
-
-
-    //
-    // Use Ice JAR files from maven central repository
-    //
     repositories {
         mavenCentral()
     }
 
-    //
-    // Both Client and Server depend only on Ice JAR
-    //
-    dependencies {
-        implementation 'com.zeroc:ice:3.7.10'
-        if (project.name == 'votingTable' || project.name == 'server') {
-            implementation project(':reliableServer')
-        }
-    }
-
-    //
-    // Create a JAR file with the appropriate Main-Class and Class-Path attributes
-    //
-    jar {
+    tasks.withType(Jar).configureEach {
         manifest {
             attributes(
-                "Main-Class": project.name.capitalize(),
-                "Class-Path": configurations.runtimeClasspath.resolve().collect { it.toURI() }.join(' ')
+                "Main-Class": project.name.capitalize()
             )
+        }
+
+        doFirst {
+            manifest.attributes["Class-Path"] =
+                configurations.runtimeClasspath.files.collect { it.toURI() }.join(' ')
         }
     }
 }
+
+project(':votingTable') {
+    apply plugin: 'com.zeroc.gradle.ice-builder.slice'
+
+    dependencies {
+        implementation 'com.zeroc:ice:3.7.10'
+        implementation project(':reliableServer')
+    }
+
+    slice {
+        java {
+            files = [
+                file("${rootProject.projectDir}/Voting.ice"),
+                file("${rootProject.projectDir}/ReliableMessage.ice")
+            ]
+        }
+    }
+
+    sourceSets.main.java.srcDirs += file("$buildDir/generated-src/slice/java")
+
+}
+
+project(':server') {
+    apply plugin: 'com.zeroc.gradle.ice-builder.slice'
+
+    dependencies {
+        implementation 'com.zeroc:ice:3.7.10'
+        implementation project(':reliableServer')
+    }
+
+    slice {
+        java {
+            files = [
+                file("${rootProject.projectDir}/Voting.ice"),
+                file("${rootProject.projectDir}/ReliableMessage.ice")
+            ]
+        }
+    }
+
+    sourceSets.main.java.srcDirs += file("$buildDir/generated-src/slice/java")
+}
+
+project(':proxySync') {
+    apply plugin: 'com.zeroc.gradle.ice-builder.slice'
+
+    dependencies {
+        implementation 'com.zeroc:ice:3.7.10'
+        implementation project(':reliableServer')
+    }
+
+    slice {
+        java {
+            files = [
+                file("${rootProject.projectDir}/Voting.ice"),
+                file("${rootProject.projectDir}/ReliableMessage.ice")
+            ]
+        }
+    }
+
+    sourceSets.main.java.srcDirs += file("$buildDir/generated-src/slice/java")
+
+}
+
+project(':reliableServer') {
+    apply plugin: 'com.zeroc.gradle.ice-builder.slice'
+
+    dependencies {
+        implementation 'com.zeroc:ice:3.7.10'
+    }
+
+    slice {
+        java {
+            files = [
+                file("${rootProject.projectDir}/Voting.ice"),
+                file("${rootProject.projectDir}/ReliableMessage.ice")
+            ]
+        }
+    }
+
+    sourceSets.main.java.srcDirs += file("$buildDir/generated-src/slice/java")
+}
+
+project(':loadTester') {
+    apply plugin: 'com.zeroc.gradle.ice-builder.slice'
+
+    dependencies {
+        implementation 'com.zeroc:ice:3.7.10'
+        implementation project(':votingTable')
+    }
+
+    slice {
+        java {
+            files = [
+                file("${rootProject.projectDir}/Voting.ice"),
+            ]
+        }
+    }
+
+    sourceSets.main.java.srcDirs += file("$buildDir/generated-src/slice/java")
+}
+
+project(':queryDevice') {
+    apply plugin: 'com.zeroc.gradle.ice-builder.slice'
+
+    dependencies {
+        implementation 'com.zeroc:ice:3.7.10'
+        implementation project(':broker')
+
+    }
+
+    slice {
+        java {
+            files = [
+                file("${rootProject.projectDir}/Query.ice"),
+            ]
+        }
+    }
+
+    sourceSets.main.java.srcDirs += file("$buildDir/generated-src/slice/java")
+}
+
+project(':queryProxy') {
+    apply plugin: 'com.zeroc.gradle.ice-builder.slice'
+
+    dependencies {
+        implementation 'com.zeroc:ice:3.7.10'
+        implementation project(':broker')
+    }
+
+    slice {
+        java {
+            files = [
+                file("${rootProject.projectDir}/Query.ice"),
+            ]
+        }
+    }
+
+    sourceSets.main.java.srcDirs += file("$buildDir/generated-src/slice/java")
+}
+
+project(':queryServer') {
+    apply plugin: 'com.zeroc.gradle.ice-builder.slice'
+
+    dependencies {
+        implementation 'com.zeroc:ice:3.7.10'
+    }
+
+    slice {
+        java {
+            files = [
+                file("${rootProject.projectDir}/Query.ice"),
+            ]
+        }
+    }
+
+    sourceSets.main.java.srcDirs += file("$buildDir/generated-src/slice/java")
+}
+
+project(':broker') {
+    apply plugin: 'com.zeroc.gradle.ice-builder.slice'
+
+    dependencies {
+        implementation 'com.zeroc:ice:3.7.10'
+        
+    }
+
+    slice {
+        java {
+            files = [
+                file("${rootProject.projectDir}/BrokerIce.ice"),
+            ]
+        }
+    }
+
+    sourceSets.main.java.srcDirs += file("$buildDir/generated-src/slice/java")
+}
+
