@@ -17,9 +17,8 @@ public class QueryDevice implements Query.QueryDeviceI {
 	}
 
 	public static void main(String[] args) {
-
-		try (Communicator communicator = Util.initialize(args, "QueryDevice.cfg")) {
-
+		String cfg = args.length > 0 ? args[0] : "QueryDevice.cfg";
+		try (Communicator communicator = Util.initialize(args, cfg)) {
 			// exponer el servicio
 
 			QueryDevice queryDevice = new QueryDevice();
@@ -39,9 +38,9 @@ public class QueryDevice implements Query.QueryDeviceI {
 			QueryProxyIPrx queryProxyIPrx = QueryProxyIPrx.checkedCast(communicator.stringToProxy(server));
 
 			System.out.println("Query device up and runnig");
-			
+
 			queryDeviceController = new QueryDeviceController(queryProxyIPrx);
-			
+
 			queryDeviceController.run();
 
 			communicator.waitForShutdown();
