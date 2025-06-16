@@ -164,6 +164,11 @@ project(':queryServer') {
 
     dependencies {
         implementation 'com.zeroc:ice:3.7.10'
+        implementation 'org.postgresql:postgresql:42.7.2'
+        implementation 'com.zaxxer:HikariCP:6.2.0'
+        implementation 'org.slf4j:slf4j-api:2.0.13'
+        implementation 'org.slf4j:slf4j-simple:2.0.13'
+
     }
 
     slice {
@@ -207,3 +212,23 @@ project(':loadTester') {
 
     sourceSets.main.java.srcDirs += file("$buildDir/generated-src/slice/java")
 }
+
+
+project(':queryTester') {
+    apply plugin: 'com.zeroc.gradle.ice-builder.slice'
+
+    dependencies {
+        implementation 'com.zeroc:ice:3.7.10'
+        implementation project(':queryDevice')
+    }
+
+    slice {
+        java {
+            files = [file("${rootProject.projectDir}/Query.ice")]
+        }
+    }
+
+    sourceSets.main.java.srcDirs += file("$buildDir/generated-src/slice/java")
+}
+
+

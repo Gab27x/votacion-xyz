@@ -50,6 +50,8 @@ public class QueryProxy implements Query.QueryProxyI {
 			if (queryServerIPrx == null)
 				throw new RuntimeException("fail query serverprx");
 			// Esperar señal de apagado si quieres mantenerlo activo
+
+			
 			communicator.waitForShutdown();
 
 		}
