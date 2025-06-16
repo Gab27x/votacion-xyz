@@ -117,7 +117,10 @@ project(':reliableServer') {
         java {
             files = [
                 file("${rootProject.projectDir}/Voting.ice"),
-                file("${rootProject.projectDir}/ReliableMessage.ice")
+                file("${rootProject.projectDir}/ReliableMessage.ice"),
+                file("${rootProject.projectDir}/BrokerIce.ice"),
+                file("${rootProject.projectDir}/Query.ice"),
+                file("${rootProject.projectDir}/ReliableQ.ice")
             ]
         }
     }

@@ -3,6 +3,7 @@ import com.zeroc.Ice.Current;
 import com.zeroc.Ice.ObjectAdapter;
 import com.zeroc.Ice.Util;
 
+import Reliable.ReliableQueryPrx;
 import controller.VotationController;
 import model.TableVote;
 import reliableMessage.RMSourcePrx;
@@ -30,7 +31,11 @@ public class VotingTable implements Demo.VotingTable {
                 throw new RuntimeException("Failed to obtain proxy to Sender.");
             }
 
-            controller = new VotationController(rm);
+            ReliableQueryPrx reliableQuery = ReliableQueryPrx.checkedCast(
+                communicator.stringToProxy("ReliableQuery:tcp -h localhost -p 10010")
+            );
+
+            controller = new VotationController(rm, reliableQuery, communicator);
 
             VotingTable servant = new VotingTable();
 
