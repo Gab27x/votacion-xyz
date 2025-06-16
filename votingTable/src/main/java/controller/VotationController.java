@@ -2,6 +2,7 @@ package controller;
 
 import reliableMessage.RMSourcePrx;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class VotationController implements Runnable {
     private RMSourcePrx sitePrx; // Proxy a VotingSite remoto(reliableServer)
     private ReliableQueryPrx reliableQuery;
     private String localTableId;
-    private List<String> validVoterIds = Arrays.asList("123", "456", "789"); //Datos de prueba, no juzgar
+    private List<String> validVoterIds = new ArrayList<>(Arrays.asList("123", "456", "789")); //Datos de prueba, no juzgar
     
 
     
@@ -45,7 +46,7 @@ public class VotationController implements Runnable {
 
     public boolean canVoteHere(String voterId) {
         if (validVoterIds.contains(voterId)) {
-            System.out.println("Voter ID no válido localmente.");
+            System.out.println("Ya ha votado.");
             return false;
         }
 
