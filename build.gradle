@@ -71,6 +71,10 @@ project(':server') {
 
     dependencies {
         implementation 'com.zeroc:ice:3.7.10'
+        implementation 'org.postgresql:postgresql:42.7.2'
+        implementation 'com.zaxxer:HikariCP:6.2.0'
+        implementation 'org.slf4j:slf4j-api:2.0.13'
+        implementation 'org.slf4j:slf4j-simple:2.0.13'
         implementation project(':reliableServer')
     }
 
