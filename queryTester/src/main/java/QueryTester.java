@@ -38,11 +38,9 @@ public class QueryTester {
                     long duracion = finMs - inicioMs;
                     tiemposMs.add(duracion);
 
-                    String[] resultadoSplit = resultado.split(",");
-                    String target = resultadoSplit.length > 3 ? resultadoSplit[3] : "N/A";
 
                     System.out.printf("Documento: %s | Tiempo: %d ms | Mesa: %s | Target: %s%n",
-                            documento, duracion, mesaId, target);
+                            documento, duracion, mesaId, resultado);
                 }
             }
 

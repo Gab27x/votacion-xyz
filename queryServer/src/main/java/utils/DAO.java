@@ -1,3 +1,5 @@
+package utils;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,7 +16,7 @@ public class DAO {
     // Método para ejecutar cualquier SELECT genérico
     public void ejecutarConsultaGenerica(String query, String[] columnas) {
         try (Statement stmt = conexion.createStatement();
-                ResultSet rs = stmt.executeQuery(query)) {
+             ResultSet rs = stmt.executeQuery(query)) {
 
             while (rs.next()) {
                 StringBuilder resultado = new StringBuilder();
@@ -43,12 +45,11 @@ public class DAO {
         }
     }
 
-    // Método específico para obtener info completa de un ciudadano por su ID
-    public String obtenerInfoCiudadanoPorId(int ciudadanoId) {
+    // Método para obtener info completa de un ciudadano por su documento (VARCHAR)
+    public String obtenerInfoCiudadanoPorDocumento(String documento) {
         String resultado = "";
 
-        String query = 
-                "SELECT d.nombre AS nombre_departamento, " +
+        String query = "SELECT d.nombre AS nombre_departamento, " +
                 "m.nombre AS nombre_municipio, " +
                 "p.nombre AS nombre_puesto, " +
                 "c.mesa_id, " +
@@ -60,10 +61,10 @@ public class DAO {
                 "JOIN puesto_votacion p ON mv.puesto_id = p.id " +
                 "JOIN municipio m ON p.municipio_id = m.id " +
                 "JOIN departamento d ON m.departamento_id = d.id " +
-                "WHERE c.id = ?";
+                "WHERE c.documento = ?";
 
         try (PreparedStatement stmt = conexion.prepareStatement(query)) {
-            stmt.setInt(1, ciudadanoId);
+            stmt.setString(1, documento);
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
@@ -75,7 +76,7 @@ public class DAO {
                         rs.getInt("id_municipio") + ", " +
                         rs.getInt("id_puesto");
             } else {
-                resultado = "No se encontró ciudadano con ese ID.";
+                resultado = "No se encontró ciudadano con ese documento.";
             }
 
         } catch (SQLException e) {
@@ -85,4 +86,27 @@ public class DAO {
 
         return resultado;
     }
+    
+
+    // Método para obtener solo el mesa_id de un ciudadano por su documento
+    public Integer obtenerMesaIdPorDocumento(String documento) {
+        String query = "SELECT mesa_id FROM ciudadano WHERE documento = ?";
+
+        try (PreparedStatement stmt = conexion.prepareStatement(query)) {
+            stmt.setString(1, documento);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                return rs.getInt("mesa_id");
+            } else {
+                System.out.println("No se encontró ciudadano con ese documento.");
+                return null;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 }
