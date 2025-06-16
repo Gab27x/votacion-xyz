@@ -17,4 +17,5 @@ include('queryDevice')
 include('queryProxy')
 include('queryServer')
 include('broker')
+include('queryTester')
 
