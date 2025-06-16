@@ -22,8 +22,10 @@ public class VotingTable implements Demo.VotingTable {
 
     public static void main(String[] args) {
         System.out.println("VotingTable is starting up...");
+        String cfg = args.length > 0 ? args[0] : "QueryDevice.cfg";
 
-        try (Communicator communicator = Util.initialize(args, "VotingTable.cfg")) {
+        try (Communicator communicator = Util.initialize(args, cfg)) {
+            
 
             RMSourcePrx rm = RMSourcePrx.checkedCast(
                     communicator.propertyToProxy("Sender.Proxy"));
