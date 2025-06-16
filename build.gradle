@@ -211,3 +211,23 @@ project(':loadTester') {
 
     sourceSets.main.java.srcDirs += file("$buildDir/generated-src/slice/java")
 }
+
+
+project(':queryTester') {
+    apply plugin: 'com.zeroc.gradle.ice-builder.slice'
+
+    dependencies {
+        implementation 'com.zeroc:ice:3.7.10'
+        implementation project(':queryDevice')
+    }
+
+    slice {
+        java {
+            files = [file("${rootProject.projectDir}/Query.ice")]
+        }
+    }
+
+    sourceSets.main.java.srcDirs += file("$buildDir/generated-src/slice/java")
+}
+
+
