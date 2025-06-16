@@ -27,7 +27,7 @@ public class ProxySync {
 
             adapter.activate();
 
-            ObjectPrx serverPrx = communicator.stringToProxy("Service:tcp -h 192.168.131.103 -p 10012");
+            ObjectPrx serverPrx = communicator.propertyToProxy("Service.Proxy");
             messenger.setDestination(RMDestinationPrx.checkedCast(serverPrx));
 
             communicator.waitForShutdown();

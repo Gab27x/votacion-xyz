@@ -33,7 +33,7 @@ public class VotingTable implements Demo.VotingTable {
             }
 
             ReliableQueryPrx reliableQuery = ReliableQueryPrx.checkedCast(
-                communicator.stringToProxy("ReliableQuery:tcp -h 192.168.131.129 -p 10010")
+                communicator.propertyToProxy("Sender.Proxy")
             );
 
              VotationController controller = new VotationController(rm, reliableQuery, communicator);
