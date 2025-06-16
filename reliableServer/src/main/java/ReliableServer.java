@@ -23,7 +23,7 @@ public class ReliableServer {
         try {
             // Conectarse al Broker
             BrokerImpPrx broker = BrokerImpPrx.checkedCast(
-                communicator.stringToProxy("Broker:tcp -h localhost -p 10020")
+                communicator.stringToProxy("Broker:tcp -h 192.168.131.105 -p 10020")
             );
             
 
