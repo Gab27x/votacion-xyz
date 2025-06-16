@@ -164,6 +164,8 @@ project(':queryServer') {
 
     dependencies {
         implementation 'com.zeroc:ice:3.7.10'
+        implementation 'org.postgresql:postgresql:42.7.2'
+        implementation 'com.zaxxer:HikariCP:6.2.0'
     }
 
     slice {
