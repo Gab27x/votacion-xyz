@@ -19,7 +19,6 @@ public class Cli {
         System.out.println("Welcome to Cli voting system");
 
         while (true) {
-            showCandidates();
 
             System.out.print("Enter Voter ID (or type 'exit' to quit): ");
             String voterId = scanner.nextLine().trim();
@@ -31,6 +30,14 @@ public class Cli {
                 System.err.println("Voter ID cannot be empty.");
                 continue;
             }
+
+            // Validación con VotationController
+            if (!controller.canVoteHere(voterId)) {
+                System.out.println("No estás habilitado para votar en esta mesa.");
+                continue;
+            }
+
+            showCandidates();
 
             System.out.print("Enter Candidate ID: ");
             String candidateInput = scanner.nextLine().trim();

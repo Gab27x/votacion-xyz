@@ -53,6 +53,48 @@ public interface VotingSitePrx extends com.zeroc.Ice.ObjectPrx
         return f;
     }
 
+    default String validateVoter(String voterId, String votingTableId)
+    {
+        return validateVoter(voterId, votingTableId, com.zeroc.Ice.ObjectPrx.noExplicitContext);
+    }
+
+    default String validateVoter(String voterId, String votingTableId, java.util.Map<String, String> context)
+    {
+        return _iceI_validateVoterAsync(voterId, votingTableId, context, true).waitForResponse();
+    }
+
+    default java.util.concurrent.CompletableFuture<java.lang.String> validateVoterAsync(String voterId, String votingTableId)
+    {
+        return _iceI_validateVoterAsync(voterId, votingTableId, com.zeroc.Ice.ObjectPrx.noExplicitContext, false);
+    }
+
+    default java.util.concurrent.CompletableFuture<java.lang.String> validateVoterAsync(String voterId, String votingTableId, java.util.Map<String, String> context)
+    {
+        return _iceI_validateVoterAsync(voterId, votingTableId, context, false);
+    }
+
+    /**
+     * @hidden
+     * @param iceP_voterId -
+     * @param iceP_votingTableId -
+     * @param context -
+     * @param sync -
+     * @return -
+     **/
+    default com.zeroc.IceInternal.OutgoingAsync<java.lang.String> _iceI_validateVoterAsync(String iceP_voterId, String iceP_votingTableId, java.util.Map<String, String> context, boolean sync)
+    {
+        com.zeroc.IceInternal.OutgoingAsync<java.lang.String> f = new com.zeroc.IceInternal.OutgoingAsync<>(this, "validateVoter", null, sync, null);
+        f.invoke(true, context, null, ostr -> {
+                     ostr.writeString(iceP_voterId);
+                     ostr.writeString(iceP_votingTableId);
+                 }, istr -> {
+                     String ret;
+                     ret = istr.readString();
+                     return ret;
+                 });
+        return f;
+    }
+
     /**
      * Contacts the remote server to verify that the object implements this type.
      * Raises a local exception if a communication error occurs.
