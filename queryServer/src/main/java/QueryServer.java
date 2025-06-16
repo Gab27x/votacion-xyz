@@ -1,9 +1,14 @@
+import com.zaxxer.hikari.HikariDataSource;
 import com.zeroc.Ice.Communicator;
 import com.zeroc.Ice.Current;
 import com.zeroc.Ice.ObjectAdapter;
 import com.zeroc.Ice.Util;
+import java.sql.Connection;
+import java.sql.SQLException;
+
 
 public class QueryServer implements Query.QueryServerI {
+
 
 	@Override
 	public String getVotingTableById(String id, Current current) {
