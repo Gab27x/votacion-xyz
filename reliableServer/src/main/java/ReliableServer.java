@@ -14,18 +14,18 @@ import threads.RMJob;
 
 public class ReliableServer {
 
-    private static Communicator communicator;
+
     private static QueryProxyIPrx queryProxy;
 
     public static void main(String[] args) {
-        communicator = Util.initialize(args, "rmservice.config");
 
-        try {
+
+        String cfg = args.length > 0 ? args[0] : "QueryDevice.cfg";
+
+        try(Communicator communicator = Util.initialize(args, cfg)) {
             // Conectarse al Broker
             BrokerImpPrx broker = BrokerImpPrx.checkedCast(
-                communicator.stringToProxy("Broker:tcp -h 192.168.131.105 -p 10020")
-            );
-            
+                    communicator.stringToProxy("Broker:tcp -h 192.168.131.105 -p 10020"));
 
             if (broker == null) {
                 throw new RuntimeException("No se pudo conectar al broker");
@@ -39,8 +39,7 @@ public class ReliableServer {
             }
 
             queryProxy = QueryProxyIPrx.checkedCast(
-                communicator.stringToProxy(proxyStr)
-            );
+                    communicator.stringToProxy(proxyStr));
 
             if (queryProxy == null) {
                 throw new RuntimeException("El proxy obtenido no implementa la interfaz esperada");
@@ -48,7 +47,7 @@ public class ReliableServer {
 
             System.out.println("ReliableServer conectado al QueryProxy correctamente");
 
-            //RM
+            // RM
             Notification notification = new Notification();
             RMJob job = new RMJob(notification);
             RMReciever rec = new RMReciever(job);
@@ -63,7 +62,7 @@ public class ReliableServer {
 
             // Configurar el proxy del servidor de destino
             RMDestinationPrx dest = RMDestinationPrx
-                 .uncheckedCast(communicator.stringToProxy("Receiver:tcp -h 192.168.131.130 -p 10011"));
+                    .uncheckedCast(communicator.stringToProxy("Receiver:tcp -h 192.168.131.130 -p 10011"));
             sender.setServerProxy(dest, null);
 
             adapter.activate();

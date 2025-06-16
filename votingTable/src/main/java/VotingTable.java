@@ -25,7 +25,6 @@ public class VotingTable implements Demo.VotingTable {
         String cfg = args.length > 0 ? args[0] : "QueryDevice.cfg";
 
         try (Communicator communicator = Util.initialize(args, cfg)) {
-            
 
             RMSourcePrx rm = RMSourcePrx.checkedCast(
                     communicator.propertyToProxy("Sender.Proxy"));
@@ -35,10 +34,9 @@ public class VotingTable implements Demo.VotingTable {
             }
 
             ReliableQueryPrx reliableQuery = ReliableQueryPrx.checkedCast(
-                communicator.propertyToProxy("Sender.Proxy")
-            );
+                    communicator.propertyToProxy("Sender.Proxy"));
 
-             VotationController controller = new VotationController(rm, reliableQuery, communicator);
+            VotationController controller = new VotationController(rm, reliableQuery, communicator);
 
             ObjectAdapter adapter = communicator.createObjectAdapter("VotingTable");
 
